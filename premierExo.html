@@ -1,0 +1,63 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function premierExo() {
+            let a = 0;
+            let b = true;
+            let c = 2;
+            let d = 1.2;
+            let e = "hello";
+            let f = "bonjour" + 4;
+            let g = { a : 0.4 };
+            let h = ['a', 'b', 'c'];
+            let tab = [a, b, c, d, e, f, g, h];
+            for (let i = 0; i < tab.length; i++) {
+                document.getElementById("returns").innerHTML += tab[i] + " est de type : " + typeof tab[i] + "<br>";
+            }
+        }
+    </script>
+</head>
+
+<body onload="premierExo();">
+    <div >
+        <h1>Premier Exercice</h1>
+        <p id="returns"></p>
+    </div>
+    <div>
+        <h1 onclick="deuxiemeExo();">Deuxième Exercice</h1>
+        <p id="returns2"></p>
+        <script>
+            function deuxiemeExo() {
+                let possibilities = ["tete", "ventre", "dos"];
+                alert("Bonjour, je suis votre assistant médical.");
+                let localisation = prompt("Où avez-vous mal ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(" ")[0];
+                
+                while (!possibilities.includes(localisation)) {
+                    alert("Je ne connais pas ce type de douleur.");
+                    localisation = prompt("Je n'ai pas compris.. Où avez-vous mal ?").toLowerCase();
+                }
+                if (localisation === "tête"|| localisation === "tete") {
+                    alert("Vous avez mal à la tête, prenez un Doliprane.");
+                } else if (localisation === "ventre") {
+                    alert("Vous avez mal au ventre, prenez un Spasfon.");
+                } else {
+                    alert("Vous avez mal au dos, reposez-vous.");
+                };
+                ;
+            }
+            document.getElementById("returns2").innerHTML = "Cliquez sur le titre pour lancer l'exercice."
+        </script>
+    </div>
+    <div></div>
+</body>
+</html>
+
+
+
+            
