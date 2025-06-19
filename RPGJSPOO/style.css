@@ -1,0 +1,75 @@
+/* RPGJSPOO Style Sheet */
+
+/* #region Global Styles */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; }
+
+body { 
+    background: #232323; 
+    color: #f1f1f1; 
+    font-family: 'Trebuchet MS', sans-serif; }
+
+header {
+    padding: 20px; 
+    text-align: center; 
+    margin: 5%;
+    height: 35%;
+
+    border-radius: 50px;
+    background: linear-gradient(145deg, #50524f, #a7a6a6);
+    box-shadow:  20px 20px 60px #414141, -20px -20px 60px #3d3d3d;
+    background-image: url(/RPGJSPOO/assets/img/hero/paralax-1900x450.png);
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+h1, h2, h3 { 
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); }
+
+ #intro {
+    text-align: center;
+    padding: 20px; 
+    border-radius: 8px; 
+    margin: 20px auto; 
+    max-width: 700px; 
+    color: #f1f1f1; }
+
+.bouton { 
+    background: #ffffff; color: #000000; border: none; padding: 10px 20px; margin: 5px; border-radius: 5px; cursor: pointer; }
+.bouton:hover { 
+    background: #4a0000f7; color: rgb(255, 255, 255);}
+/* #endregion */
+
+
+
+#game-area, #combat-area, #prologue, #inventory-area, #mode-select { margin: 20px auto; max-width: 700px; }
+.personnage, .monstre { margin: 10px 0; padding: 8px; border-radius: 8px; background: #343a40; }
+
+.dead { color: #b22222; text-decoration: line-through; }
+#combat-actions button { margin-right: 10px; }
+.sac { font-size: 0.9em; color: #cfcfcf; }
+
+/* Thème clair */
+body.theme-clair {
+    background: #f1f1f1;
+    color: #232323;
+}
+body.theme-clair header {
+    background: linear-gradient(145deg, #e0e0e0, #bdbdbd);
+}
+body.theme-clair h1, body.theme-clair h2, body.theme-clair h3 {
+    color: #005a8a;
+}
+body.theme-clair .personnage, 
+body.theme-clair .monstre {
+    background: #eaeaea;
+    color: #232323;
+}
+body.theme-clair .dead {
+    color: #b22222;
+}

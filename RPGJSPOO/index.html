@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>RPG RDA</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/utils.js" defer></script>
+  <script src="js/personnages.js" defer></script>
+  <script src="js/monstres.js" defer></script>
+  <script src="js/inventaire.js" defer></script>
+  <script src="js/combat.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>RPG non officiel, projet d'études</h1>
+    <p>Un jeu de rôle Web, calqué sur l'univers de Reflets d'Acide</p>
+    <!-- Ajout d'un bouton pour changer le thème -->
+    <button id="theme-toggle">Changer de thème</button>
+    <!-- Ajout d'un bouton pour couper/activer le son -->
+    <button id="sound-toggle">Son ON/OFF</button>
+    <!-- Ajout d'un bouton pour sauvegarder la partie -->
+    <button id="save-game">Sauvegarder</button>
+    <!-- Ajout d'un bouton pour charger la partie -->
+    <button id="load-game">Charger</button>
+  </header>
+  <section id="intro">
+    <div id="prologue"></div>
+    <div id="mode-select"></div>
+  </section>
+  <section>
+    <div id="game-area">
+      <!-- Ajout d'une zone de dialogue/narration -->
+      <div id="dialogue-area"></div>
+      <!-- Ajout d'une zone pour les choix du joueur -->
+      <div id="choices-area"></div>
+      <!-- Ajout d'une zone pour les quêtes -->
+      <div id="quest-area"></div>
+    </div>
+    <div id="combat-area">
+      <!-- Ajout d'une barre de vie pour le joueur -->
+      <div class="status-bar">
+        <span>PV :</span>
+        <progress id="player-hp" value="100" max="100"></progress>
+        <span id="player-hp-value">100/100</span>
+      </div>
+      <!-- Ajout d'une barre de mana pour le joueur -->
+      <div class="status-bar">
+        <span>Mana :</span>
+        <progress id="player-mana" value="50" max="50"></progress>
+        <span id="player-mana-value">50/50</span>
+      </div>
+      <!-- Ajout d'une barre de vie pour le monstre -->
+      <div class="status-bar">
+        <span>Monstre PV :</span>
+        <progress id="monster-hp" value="100" max="100"></progress>
+        <span id="monster-hp-value">100/100</span>
+      </div>
+      <!-- Ajout des boutons d'action en combat -->
+      <div id="combat-actions">
+        <button id="attack-btn">Attaquer</button>
+        <button id="skill-btn">Compétence</button>
+        <button id="item-btn">Objet</button>
+        <button id="flee-btn">Fuir</button>
+      </div>
+      <!-- Ajout d'une zone de log pour le combat -->
+      <div id="combat-log"></div>
+    </div>
+    <div id="inventory-area">
+      <!-- Ajout d'une liste d'inventaire dynamique -->
+      <h2>Inventaire</h2>
+      <ul id="inventory-list"></ul>
+      <!-- Ajout d'un bouton pour jeter un objet -->
+      <button id="drop-item-btn">Jeter l'objet sélectionné</button>
+    </div>
+    <!-- Ajout d'une zone pour les statistiques du joueur -->
+    <aside id="player-stats">
+      <h2>Statistiques</h2>
+      <ul>
+        <li id="stat-level">Niveau : 1</li>
+        <li id="stat-xp">XP : 0</li>
+        <li id="stat-strength">Force : 10</li>
+        <li id="stat-defense">Défense : 10</li>
+        <li id="stat-agility">Agilité : 10</li>
+        <!-- Ajoute d'autres stats si besoin -->
+      </ul>
+    </aside>
+  </section>
+  <!-- Ajout d'une zone pour les notifications/messages rapides -->
+  <div id="notification-area"></div>
+</body>
+</html>
