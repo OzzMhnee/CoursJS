@@ -49,7 +49,7 @@ const zarakai = new Personnage("Zarakaï", "Nain", "Guerrier", 120, [
 ]);
 const enoriel = new Personnage("Enoriel", "Elfe", "Barde", 90, [
     competenceChant,
-    competenceSoinRandom()
+    Furtivité
 ]);
 const zehirmahnn = new Personnage("Zehirmahnn", "Zorlim", "Mage du feu", 110, [
     competenceFeu,
@@ -61,6 +61,6 @@ const guertrude = new Personnage("Guertrude", "Humaine", "Guerrière", 80, [
 ]);
 const trichelieu = new Personnage("Trichelieu", "Elfe noir", "Assassin", 70, [
     new Competence("Coup de dague", 22),
-    new Competence("Furtivité", 0)
+    competenceSoinRandom()
 ]);
 const personnagesDisponibles = [wrandrall, zarakai, enoriel, zehirmahnn, guertrude];

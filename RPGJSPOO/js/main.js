@@ -33,7 +33,10 @@ function afficherChoixMode() {
     document.getElementById('mode-select').innerHTML = `
         <h3>Choisissez le mode de jeu :</h3>
         <button class="bouton" onclick="initialiserJeu(1)">1 Joueur</button>
-        <button class="bouton" onclick="initialiserJeu(2)">2 Joueurs</button> `;
+        <button class="bouton" onclick="initialiserJeu(2)">2 Joueurs</button>
+        <button class="bouton" onclick="initialiserJeu(3)">3 Joueurs</button>
+        <button class="bouton" onclick="initialiserJeu(4)">4 Joueurs</button>
+        <button class="bouton" onclick="initialiserJeu(5)">5 Joueurs</button> `;
 }
 
 function initialiserJeu(nbJoueurs) {
