@@ -1,0 +1,97 @@
+:root {
+    --color-black: #2e2e2e;
+    --color-grey: #808080;
+    --color-white: #d3d3d3; 
+    --color-blue: #294268;}
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0 auto;     }
+
+/* #region Title */
+header {
+    display: flex;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: var(--color-blue) ;
+    color: var(--color-white);
+    margin: 2%;
+    height: 120px; }
+header > h1 {
+    background-color: transparent; }
+
+/* #endregion Title */
+
+/* #region Main Exercices */
+section {
+    display: flex;
+    justify-content: space-between; }
+section > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;}
+.exercices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 500px;
+    height:700px;
+    background-color: var(--color-grey); }
+.exercices > h2, .exercices > p, .exercices > h6 {
+    text-align: center; 
+    width: 80%;}
+.exercices > h2 {
+    color: var(--color-blue);
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 50px; }
+.exercices > p {
+    color: var(--color-black);
+    margin-bottom: 20px;
+    width: 85%; }
+.exercices > div {
+    margin-top: 30px; }
+span {
+    background-color: transparent;
+    font-style: italic;
+    font-weight: bold;
+    color: var(--color-blue);
+    cursor: pointer; }
+button {
+    color: var(--color-blue);
+}
+/* #endregion Main Exercices */
+
+/* #region FisrtOne */
+
+#typeResult {
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block; }
+.null       { color: #4e4e4e; }
+.undefined  { color: #ffffff; }
+.boolean    { color: #801759; }
+.integer    { color: #06558a; }
+.float      { color: #024739; }
+.string     { color: #813502; }
+.array      { color: #443b86; }
+.object     { color: #09637c; }
+    
+/* #endregion FisrtOne */
+
+/* #region Third */
+#third > div {
+    display: flex;
+    gap: 40px; }
+#rangeLabels {
+    display: flex;
+    flex-direction: column; }
+#rangeInputs {
+    display: flex;
+    flex-direction: column; }
+
+/* #endregion Third */

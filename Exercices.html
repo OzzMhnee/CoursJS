@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercices JavaScript</title>
+    <script src="/exercices.js" defer></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript's exercices </h1>
+    </header>
+    
+    <section>
+        <div class="exercices" id="dataTypes">
+            <h2>the different data types</h2>
+            <p>JavaScript has simple data types, such as : <br><span onclick="getDefNumber();">number</span>, <span onclick="getDefString();">string</span>, <span onclick="getDefBoolean();">boolean</span> et <span onclick="getDefNull();">null</span>. <br><br>As well as complex data types such as: <br><span onclick="getDefUndefined();">undefined</span>, <span onclick="getDefObject();">object</span>, <span onclick="getDefArray();">array</span> et <span onclick="getDefFunction();">function</span>.</p>
+            
+            <div>
+                <input type="text" id="typeInput" size="15" placeholder="Tapez une valeur ...">
+                <button id="checkType">Vérifier le type</button>
+            </div>
+            <h4 id="typeResult"></h4>
+            <h6>You can also test your value with the method <span>typeof(value)</span> in the console, but that will not make a difference between an object and an array.</h6>
+        </div>
+        <div class="exercices" id="second">
+            <h2>Little Medical Assistant</h2>
+            <h6>Here, there is a little function that will make a match with the pain's information that the patient will give and the traitement he should take</h6>
+            <div style="text-align: center;">
+                <p style="width: 90%; padding-bottom: 20px;">Hello, I am your medical assistant. <br>I will help you find the right treatment for your pain, that said... I have just started my training, and I only know about head, stomach and back pain!!</p>
+                <input type="text" size="21" id="painInput" placeholder="Enter the pain's information">
+                <button id="checkPain">Check Pain</button>
+                <h4 id="painResult"></h4>
+            </div>
+        </div>
+        <div class="exercices" id="third">
+            <h2>Dev's lvl</h2>
+            <p>Welcome, I will test your development level!</p>
+            <p>How much do you rate your proficiency in the languages below as a percentage?</p>
+            <div>
+                <div id="rangeLabels">
+                    <label for="html">HTML</label>
+                    <label for="css">CSS</label>
+                    <label for="js">JavaScript</label>
+                    <label for="php">PHP</label>
+                </div>
+                <div id="rangeInputs">
+                    <input type="range" id="html" placeholder="HTML" required>
+                    <input type="range" id="css" placeholder="CSS" required>
+                    <input type="range" id="js" placeholder="JS" required>
+                    <input type="range" id="php" placeholder="PHP" required>
+                </div>
+                <button id="checkDev">Check<br>Dev's<br>LVL</button>
+            </div>
+            <div id="result"></div>
+        </div>
+    </section>
+    
+
+</body>
+</html>

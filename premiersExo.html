@@ -33,25 +33,24 @@
         <h1 onclick="deuxiemeExo();">Deuxième Exercice : asisstant médical simple</h1>
         <p id="returns2"></p>
         <script>
-            function deuxiemeExo() {
+            function medicalAssistant() {
                 let possibilities = ["tete", "ventre", "dos"];
-                alert("Bonjour, je suis votre assistant médical.");
                 let localisation = prompt("Où avez-vous mal ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(" ")[0];
                 
                 while (!possibilities.includes(localisation)) {
-                    alert("Je ne connais pas ce type de douleur.");
+                    document.getElementById("painResult").innerHTML = "Je ne connais pas ce type de douleur.";
                     localisation = prompt("Je n'ai pas compris.. Où avez-vous mal ?").toLowerCase();
                 }
                 if (localisation === "tête"|| localisation === "tete") {
-                    alert("Vous avez mal à la tête, prenez un Doliprane.");
+                    document.getElementById("painResult").innerHTML = "Vous avez mal à la tête, prenez un Doliprane.";
                 } else if (localisation === "ventre") {
-                    alert("Vous avez mal au ventre, prenez un Spasfon.");
+                    document.getElementById("painResult").innerHTML = "Vous avez mal au ventre, prenez un Spasfon.";
                 } else {
-                    alert("Vous avez mal au dos, reposez-vous.");
+                    document.getElementById("painResult").innerHTML = "Vous avez mal au dos, reposez-vous.";
                 };
                 ;
             }
-            document.getElementById("returns2").innerHTML = "Cliquez sur le titre pour lancer l'exercice."
+            
         </script>
     </div>
     <div>
@@ -235,6 +234,173 @@
                 }
             }
         </script>
+    </div>
+    <div>
+        <h2>Chi-Fou-Mi – 2 manches gagnantes</h2>
+        <button onclick="jouer('pierre')">Pierre</button>
+        <button onclick="jouer('feuille')">Feuille</button>
+        <button onclick="jouer('ciseaux')">Ciseaux</button>
+
+        <div id="return9"></div>
+          <script>
+    const choixPossibles = ["pierre", "feuille", "ciseaux"];
+    let scoreUtilisateur = 0;
+    let scoreOrdinateur = 0;
+    let manches = 0;
+    let partieTerminee = false;
+
+    function jouer(choixUtilisateur) {
+      if (partieTerminee) return;
+
+      const choixOrdinateur = choixPossibles[Math.floor(Math.random() * 3)];
+      let message = `Vous : <strong>${choixUtilisateur}</strong> | Ordinateur : <strong>${choixOrdinateur}</strong> → `;
+
+      if (choixUtilisateur === choixOrdinateur) {
+        message += "Égalité !<br>";
+        document.getElementById("return9").innerHTML += message;
+        return;
+      }
+
+      const utilisateurGagne =
+        (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") ||
+        (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") ||
+        (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille");
+
+      if (utilisateurGagne) {
+        scoreUtilisateur++;
+        manches++;
+        message += "Vous gagnez ce tour !<br>";
+      } else {
+        scoreOrdinateur++;
+        manches++;
+        message += "L'ordinateur gagne ce tour !<br>";
+      }
+
+      document.getElementById("return9").innerHTML += message;
+
+      if (scoreUtilisateur === 2 || scoreOrdinateur === 2 || manches === 3) {
+        partieTerminee = true;
+        afficherResultatFinal();
+      }
+    }
+
+    function afficherResultatFinal() {
+      let resultat = "<hr><strong>Résultat final : </strong>";
+      if (scoreUtilisateur === 2) {
+        resultat += "🎉 Vous avez gagné la partie !";
+      } else if (scoreOrdinateur === 2) {
+        resultat += "😞 L'ordinateur a gagné la partie.";
+      } else {
+        resultat += "Match nul (trop d’égalités).";
+      }
+      document.getElementById("return9").innerHTML += resultat + "<br><br><button onclick='resetPartie()'>Rejouer</button>";
+    }
+
+    function resetPartie() {
+      scoreUtilisateur = 0;
+      scoreOrdinateur = 0;
+      manches = 0;
+      partieTerminee = false;
+      document.getElementById("return9").innerHTML = "";
+    }
+  </script>
+<!-- 
+        <h1 onclick="chiFouMi();">ChiFouMi</h1>
+        <h1 onclick="chiFouMiTernary();">ChiFouMi Ternaire</h1>
+        <h1 onclick="chiFouMiSwitch();">ChiFouMi Switch</h1>
+        <div id="return9"></div>
+        <script>
+            function chiFouMi() {
+    const choixPossibles = ["pierre", "feuille", "ciseaux"];
+    let scoreUtilisateur = 0;
+    let scoreOrdinateur = 0;
+    let manches = 0;
+
+    while (scoreUtilisateur < 2 && scoreOrdinateur < 2 && manches < 3) {
+        let choixUtilisateur = prompt("Tour " + (manches + 1) + " : Choisissez entre Pierre, Feuille ou Ciseaux :");
+        
+        // Annulation ou entrée vide
+        if (!choixUtilisateur) {
+            alert("Saisie annulée ou vide. Merci de recommencer.");
+            continue;
+        }
+
+        choixUtilisateur = choixUtilisateur.trim().toLowerCase();
+
+        if (!choixPossibles.includes(choixUtilisateur)) {
+            alert("Entrée invalide. Choisissez parmi : Pierre, Feuille ou Ciseaux.");
+            continue;
+        }
+
+        let choixOrdinateur = choixPossibles[Math.floor(Math.random() * 3)];
+
+        let message = `Vous avez choisi ${choixUtilisateur}, l'ordinateur a choisi ${choixOrdinateur}. `;
+
+        if (choixUtilisateur === choixOrdinateur) {
+            message += "Égalité !<br>";
+            // L'égalité ne compte pas dans le nombre de manches
+        } else if (
+            (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") ||
+            (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") ||
+            (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille")
+        ) {
+            scoreUtilisateur++;
+            manches++;
+            message += "Vous avez gagné ce tour !<br>";
+        } else {
+            scoreOrdinateur++;
+            manches++;
+            message += "Vous avez perdu ce tour !<br>";
+        }
+
+        document.getElementById("return9").innerHTML += message;
+    }
+
+    let resultatFinal = "<strong>Résultat final : </strong>";
+    if (scoreUtilisateur === 2) {
+        resultatFinal += "🎉 Vous avez gagné la partie !<br>";
+    } else if (scoreOrdinateur === 2) {
+        resultatFinal += "😞 L'ordinateur a gagné la partie.<br>";
+    } else {
+        resultatFinal += "Match nul (trop d'égalités).<br>";
+    }
+
+    document.getElementById("return9").innerHTML += resultatFinal;
+}
+
+            function chiFouMiTernary() {
+                let choixUtilisateur = prompt("Choisissez entre Pierre, Feuille ou Ciseaux :").toLowerCase();
+                let choixOrdinateur = Math.floor(Math.random() * 3);
+                choixOrdinateur = choixOrdinateur === 0 ? "pierre" : choixOrdinateur === 1 ? "feuille" : "ciseaux";
+
+                document.getElementById("return9").innerHTML += (choixUtilisateur === choixOrdinateur) ? "Égalité ! Vous avez choisi " + choixUtilisateur + " et l'ordinateur a choisi " + choixOrdinateur + ".<br>" :
+                ((choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") || 
+                 (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") || 
+                 (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille")) ? 
+                "Vous avez gagné ! Vous avez choisi " + choixUtilisateur + " et l'ordinateur a choisi " + choixOrdinateur + ".<br>" :
+                "Vous avez perdu ! Vous avez choisi " + choixUtilisateur + " et l'ordinateur a choisi " + choixOrdinateur + ".<br>";
+            }
+
+            function chiFouMiSwitch() {
+                let choixUtilisateur = prompt("Choisissez entre Pierre, Feuille ou Ciseaux :").toLowerCase();
+                let choixOrdinateur = Math.floor(Math.random() * 3);
+                choixOrdinateur = choixOrdinateur === 0 ? "pierre" : choixOrdinateur === 1 ? "feuille" : "ciseaux";
+
+                switch (true) {
+                    case choixUtilisateur === choixOrdinateur:
+                        document.getElementById("return9").innerHTML += "Égalité ! Vous avez choisi " + choixUtilisateur + " et l'ordinateur a choisi " + choixOrdinateur + ".<br>";
+                        break;
+                    case (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") || 
+                         (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") || 
+                         (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille"):
+                        document.getElementById("return9").innerHTML += "Vous avez gagné ! Vous avez choisi " + choixUtilisateur + " et l'ordinateur a choisi " + choixOrdinateur + ".<br>";
+                        break;
+                    default:
+                        document.getElementById("return9").innerHTML += "Vous avez perdu ! Vous avez choisi " + choixUtilisateur + " et l'ordinateur a choisi " + choixOrdinateur + ".<br>";
+                }
+            }
+
+        </script> -->
     </div>
 </body>
 </html>
