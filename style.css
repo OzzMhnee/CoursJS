@@ -137,5 +137,26 @@ text-wrap: wrap; }
     margin-top: 3px;
     margin-bottom: 2.5px; }
 
+#penduGame {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#guessInput, #guessButton {
+    display: none;
+}
+#lePendu > img {
+    width: 30%;
+    display: none;
+}
+/* #endregion Epicerie */
+
+/* #region Annuaire Tel */
+
+#phoneBook {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 /* #endregion Epicerie */

@@ -64,9 +64,7 @@
             <span onclick="fizzBuzz();"> --> Run the simple FizzBuzz</span>
             <div id="firstFizz"> </div>
             <span onclick="fizzBuzzTernary();"> --> Run the ternary's one</span>
-            <div id="scndFizz">
-                <p style="color: red;">!!!! WARNING, this function need a check up !!!</p>
-            </div>
+            <div id="scndFizz"></div>
         </div>
         <div class="exercices" id="fifth">
             <h2>Calculette</h2>
@@ -137,6 +135,37 @@
             <button type="submit" Id="checkProduct">Check the card</button>
             <span id="productCard"></span>
             <span id="productLeft"></span>
+        </div>
+        <div class="exercices" id="lePendu">
+            <img id="cordePendu" src="/img/istockphoto-1020025454-612x612.png">
+            <h2>Le Pendu</h2>
+            <h6>Here, the exercice is to make a game of hangman with a word that the user will have to guess</h6>
+            
+
+            <div id="penduGame">
+                <button id="startPendu">Beggin a new game</button>
+                <p id="penduWord"></p>
+                <input type="text" id="guessInput" placeholder="Enter a letter">
+                <button id="guessButton">Check</button>
+                <span id="tryLeft"></span>
+                <span id="penduResult"></span>
+            </div>
+
+        </div>
+        <div class="exercices" id="repertoireTelephonique">
+            <h2>Phone Numbers</h2>
+            <h6>This exercice is to make a phone book with the possibility to add, delete and search for a contact</h6>
+            <div id="phoneBook">
+                <input type="text" id="nameInput" placeholder="Enter name">
+                <input type="text" id="numberInput" placeholder="Enter phone number">
+                <button id="addContact">Add Contact</button>
+                <button id="searchContact">Search Contact</button>
+                <button id="deleteContact">Delete Contact</button>
+                <h4 id="phoneBookResult"></h4>
+                <h6>Contacts:</h6>
+                <ul id="contactList"></ul>
+            </div>
+
         </div>
     </section>
     
