@@ -25,11 +25,16 @@ header > h1 {
 /* #region Main Exercices */
 section {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;}
 section > div {
     display: flex;
     flex-direction: column;
-    align-items: center;}
+    align-items: center;
+    border-bottom-right-radius: 150px;
+    border-top-left-radius: 150px;
+    box-shadow: var(--color-blue) 0px 0px 30px;}
 .exercices {
     display: flex;
     flex-direction: column;
@@ -38,7 +43,7 @@ section > div {
     flex-wrap: wrap;
     width: 500px;
     height:700px;
-    background-color: var(--color-grey); }
+    background-color: rgb(219, 219, 219); }
 .exercices > h2, .exercices > p, .exercices > h6 {
     text-align: center; 
     width: 80%;}
@@ -93,5 +98,44 @@ button {
 #rangeInputs {
     display: flex;
     flex-direction: column; }
-
+#result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; }
 /* #endregion Third */
+
+/* #region Forth */
+
+#firstFizz, #scndFizz {
+height: 50px;
+text-wrap: wrap; }
+#forth > div {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 50px;
+    text-decoration: ;
+    font-size: 10px; }
+
+/* #endregion Forth */
+
+/* #region Epicerie */
+#epicerie > span {
+    margin-top: 20px;
+    text-align: center;
+    width: 90%; }
+#epicerie > div {
+    display: flex;
+    width: 80%;
+    margin-bottom: 30px; }
+#epicerie > div > div {
+    display: flex;
+    flex-direction: column;
+    
+}
+#epicerie > div > div > input {
+    margin-top: 3px;
+    margin-bottom: 2.5px; }
+
+
+/* #endregion Epicerie */

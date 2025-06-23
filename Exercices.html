@@ -36,7 +36,8 @@
         </div>
         <div class="exercices" id="third">
             <h2>Dev's lvl</h2>
-            <p>Welcome, I will test your development level!</p>
+            <h6>This, is an exercice which test the ability to make a dual implementation</h6>
+            <p><br>Welcome, I will test your development level !</p>
             <p>How much do you rate your proficiency in the languages below as a percentage?</p>
             <div>
                 <div id="rangeLabels">
@@ -53,7 +54,89 @@
                 </div>
                 <button id="checkDev">Check<br>Dev's<br>LVL</button>
             </div>
-            <div id="result"></div>
+            <div id="result">
+                <div id="buttonsContener"></div>
+            </div>
+        </div>
+        <div class="exercices" id="forth">
+            <h2>FizzBuzz</h2>
+            <h6>Here, the exercices was to test the FizzBuzz's program normally, and after with a ternary function<br><br></h6>
+            <span onclick="fizzBuzz();"> --> Run the simple FizzBuzz</span>
+            <div id="firstFizz"> </div>
+            <span onclick="fizzBuzzTernary();"> --> Run the ternary's one</span>
+            <div id="scndFizz">
+                <p style="color: red;">!!!! WARNING, this function need a check up !!!</p>
+            </div>
+        </div>
+        <div class="exercices" id="fifth">
+            <h2>Calculette</h2>
+            <table>
+                <caption>This is a tableau </caption>
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <th colspan="2"></th>
+                    <td></td>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="exercices" id="epicerie">
+            <h2>Promo Fin de série</h2>
+            <h6>This, is an exercice using only array.</h6>
+            <p id="Singles product's list"></p>
+            <div>
+                <div>
+                    <input type="checkbox" for="product0" id="iProduct0">
+                    <input type="checkbox" for="product1" id="iProduct1">
+                    <input type="checkbox" for="product2" id="iProduct2">
+                    <input type="checkbox" for="product3" id="iProduct3">
+                    <input type="checkbox" for="product4" id="iProduct4">
+                    <input type="checkbox" for="product5" id="iProduct5">
+                    
+                </div>
+                <div>
+                    <label for="product1" id="product0"></label>
+                    <label for="product1" id="product1"></label>
+                    <label for="product2" id="product2"></label>
+                    <label for="product3" id="product3"></label>
+                    <label for="product4" id="product4"></label>
+                    <label for="product5" id="product5"></label>
+                    
+                </div>
+                <div>
+                    <input type="checkbox" for="product6" id="iProduct6">
+                    <input type="checkbox" for="product7" id="iProduct7">
+                    <input type="checkbox" for="product8" id="iProduct8">
+                    <input type="checkbox" for="product9" id="iProduct9">
+                    <input type="checkbox" for="product10" id="iProduct10">
+                    <input type="checkbox" for="product11" id="iProduct11">
+                    
+                </div>
+                <div>
+                    <label for="product6" id="product6"></label>
+                    <label for="product7" id="product7"></label>
+                    <label for="product8" id="product8"></label>
+                    <label for="product9" id="product9"></label>
+                    <label for="product10" id="product10"></label>
+                    <label for="product11" id="product11"></label>
+                    
+                </div>
+            </div>
+            <button type="submit" Id="checkProduct">Check the card</button>
+            <span id="productCard"></span>
+            <span id="productLeft"></span>
         </div>
     </section>
     

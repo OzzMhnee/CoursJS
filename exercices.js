@@ -140,26 +140,28 @@ function createMissionButtons(language) {
 
     // Crée le texte de défi
     const question = document.createElement("p");
-    question.innerHTML = `👉 Il faut vous améliorer en <strong>${language}</strong>. Acceptez-vous le défi ?`;
+    question.innerHTML = "Il faut vous améliorer en " + language + ". <br>Acceptez-vous le défi ?";
 
     // Crée les boutons Oui / Non
     const yesBtn = document.createElement("button");
     yesBtn.textContent = "Oui";
-    yesBtn.style.marginRight = "10px";
 
     const noBtn = document.createElement("button");
     noBtn.textContent = "Non";
 
     // Actions quand on clique
     yesBtn.addEventListener("click", () => {
-        resultDiv.innerHTML += `<p>✅ Super, vous irez loin !</p>`;
+        yesBtn.disabled = !event.target.checked;
+        noBtn.hidden = true;
+        resultDiv.innerHTML += "<p>Super, vous irez loin !</p>";
     });
 
     noBtn.addEventListener("click", () => {
-        resultDiv.innerHTML += `<p>❌ Dommage, vous aviez du potentiel !</p>`;
+        noBtn.disabled = !event.target.checked;
+        yesBtn.hidden = true;
+        resultDiv.innerHTML += "<p>Dommage, vous aviez du potentiel !</p>";
     });
 
-    // Ajoute au DOM
     resultDiv.appendChild(question);
     resultDiv.appendChild(yesBtn);
     resultDiv.appendChild(noBtn);
@@ -183,40 +185,92 @@ function troisiemeExo() {
 
     if (HTML < 50) {
         if (total > 12.5) {
-            result.innerHTML += `🟡 Vous êtes débutant et un peu dispersé.<br>`;
+            result.innerHTML += "Vous êtes débutant et un peu dispersé.<br>";
             createMissionButtons("HTML");
         } else {
-            result.innerHTML += `🟡 Débutant mais concentré : continuez avec le HTML puis CSS.`;
+            result.innerHTML += "Débutant mais concentré : continuez avec le HTML puis CSS.";
         }
     } else if (HTML >= 50 && HTML < 75) {
         if (CSS < 50) {
-            result.innerHTML += `🟠 Intermédiaire en HTML, débutant en CSS.<br>`;
+            result.innerHTML += "Intermédiaire en HTML, débutant en CSS.<br>";
             createMissionButtons("CSS");
         } else {
-            result.innerHTML += `🟠 Bon en HTML et CSS, mais débutez le JavaScript.<br>`;
+            result.innerHTML += "Bon en HTML et CSS, mais débutez le JavaScript.<br>";
             createMissionButtons("JavaScript");
         }
     } else if (HTML >= 75 && HTML < 80) {
         if (CSS < 75) {
-            result.innerHTML += `🟢 Avancé en HTML, à renforcer en CSS.<br>`;
+            result.innerHTML += "Avancé en HTML, à renforcer en CSS.<br>";
             createMissionButtons("CSS");
         } else if (JS < 75) {
-            result.innerHTML += `🟢 HTML et CSS solides, mais JavaScript encore faible.<br>`;
+            result.innerHTML += "HTML et CSS solides, mais JavaScript encore faible.<br>";
             createMissionButtons("JavaScript");
         } else if (PHP < 75) {
-            result.innerHTML += `🟢 HTML, CSS et JS solides, mais PHP à améliorer.<br>`;
+            result.innerHTML += "HTML, CSS et JS solides, mais PHP à améliorer.<br>";
             createMissionButtons("PHP");
         } else {
-            result.innerHTML += `🟢 Très bon niveau global. Dernier effort pour devenir expert.`;
+            result.innerHTML += "Très bon niveau global. Dernier effort pour devenir expert.";
         }
     } else if (HTML >= 80 && total > 76.25) {
-        result.innerHTML += `🏆 Vous êtes un expert en programmation !<br>`;
+        result.innerHTML += "Vous êtes un expert en programmation !<br>";
         createMissionButtons("Procrastination");
     } else {
-        result.innerHTML += `🧩 Continuez à progresser sur tous les langages.`;
+        result.innerHTML += "Continuez à progresser sur tous les langages.";
     }
 }
 
 document.getElementById("checkDev").addEventListener("click", troisiemeExo);
 
 // #endregion
+
+
+// #region FizzBuzz
+
+///FIRST
+function fizzBuzz() {
+    for (let i = 1; i < 20; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            document.getElementById("firstFizz").innerHTML += "FizzBuzz -";
+        } else if (i % 3 === 0) {
+            document.getElementById("firstFizz").innerHTML += "Fizz -";
+        } else if (i % 5 === 0) {
+            document.getElementById("firstFizz").innerHTML += "Buzz -";
+        } else {
+            document.getElementById("firstFizz").innerHTML += i + "-";
+        }
+    }
+}
+///SECOND : TERNARY'ONE
+function fizzBuzzTernary() { for (let i = 1; 1<20; i++) document.getElementById("scndFizz").innerHTML += (i % 15 === 0) ? "FizzBuzz -" : (i % 3 === 0) ? "Fizz -" : (i % 5 === 0) ? "Buzz -" : i + "-"; }
+// #endregion
+
+
+
+// #region Epicerie : Fin de Serie
+let initialList = ["backpack", "pen", "mealCase","computer", "surprise", "paper", "eraser", "markers", "pencilcase", "pencil", "multicolor pen", "diary"]
+let cardList = [];
+let restList = [];
+// afficher produits dans liste
+for (let i = 0; i < initialList.length; i++) {
+    document.getElementById("product"+i).innerHTML = initialList[i];
+}
+//Mettre à jour la liste des produits suivant les cases à cocher
+
+document.getElementById("checkProduct").addEventListener("click", function () {
+    for (let i = initialList.length - 1 ; i > -1 ; i--) {
+        if (document.getElementById("iProduct"+i).checked) {
+            document.getElementById("product"+i).style.textDecoration = "line-through";
+            cardList.push(initialList[i]);
+        } else { 
+            restList.push(initialList[i]);
+        }
+    }
+    document.getElementById("productCard").innerHTML = "You choosed : " + cardList.join(", ") + "<br>";
+    document.getElementById("productLeft").innerHTML = "You can also add : " + initialList.join(", ") + "<br>";
+});
+// #endregion 
+
+
+// #region lePendu
+
+// #endregion 

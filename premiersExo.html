@@ -6,118 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function premierExo() {
-            let a = 0;
-            let b = true;
-            let c = 2;
-            let d = 1.2;
-            let e = "hello";
-            let f = "bonjour" + 4;
-            let g = { a : 0.4 };
-            let h = ['a', 'b', 'c'];
-            let tab = [a, b, c, d, e, f, g, h];
-            for (let i = 0; i < tab.length; i++) {
-                document.getElementById("returns").innerHTML += tab[i] + " est de type : " + typeof tab[i] + "<br>";
-            }
-        }
-    </script>
 </head>
 
-<body onload="premierExo();">
-    <div >
-        <h1>Premier Exercice</h1>
-        <p id="returns"></p>
-    </div>
-    <div>
-        <h1 onclick="deuxiemeExo();">Deuxième Exercice : asisstant médical simple</h1>
-        <p id="returns2"></p>
-        <script>
-            function medicalAssistant() {
-                let possibilities = ["tete", "ventre", "dos"];
-                let localisation = prompt("Où avez-vous mal ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(" ")[0];
-                
-                while (!possibilities.includes(localisation)) {
-                    document.getElementById("painResult").innerHTML = "Je ne connais pas ce type de douleur.";
-                    localisation = prompt("Je n'ai pas compris.. Où avez-vous mal ?").toLowerCase();
-                }
-                if (localisation === "tête"|| localisation === "tete") {
-                    document.getElementById("painResult").innerHTML = "Vous avez mal à la tête, prenez un Doliprane.";
-                } else if (localisation === "ventre") {
-                    document.getElementById("painResult").innerHTML = "Vous avez mal au ventre, prenez un Spasfon.";
-                } else {
-                    document.getElementById("painResult").innerHTML = "Vous avez mal au dos, reposez-vous.";
-                };
-                ;
-            }
-            
-        </script>
-    </div>
-    <div>
-        <h1 onclick="troisiemeExo();">Troisième Exercice : ascenssion développeur</h1>
-        <p id="returns3"></p>
-        <script>
-
-            function mission(language) {
-
-                let mission = prompt("Il faut vous améliorer en " + language +" \n Acceptez-vous le défis ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (mission === "oui" || mission === "yes") {
-                    alert("Super, vous irez loin !");
-                } else if (mission === "non" || mission === "no") {
-                    alert("Dommage, vous aviez du potentiel !");
-                } else {
-                    alert("Je n'ai pas compris votre réponse.");
-                    mission(language);
-                }
-                alert("Parfait, vous irez loin !");
-            }
-            function troisiemeExo() {
-                alert("Bienvenue, je vais tester votre niveau en programmation !");
-                let HTML = prompt("A combien, en pourcentage, évaluez-vous votre niveau de compétence en HTML ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f, %]/g, "");
-                let CSS = prompt("A combien, en pourcentage, évaluez-vous votre niveau de compétence en CSS ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f, %]/g, "");
-                let JS = prompt("A combien, en pourcentage, évaluez-vous votre niveau de compétence en JavaScript ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f, %]/g, "");
-                let PHP = prompt("Pour finir, à combien, en pourcentage, évaluez-vous votre niveau de compétence en PHP ?").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f, %]/g, "");
-                let total = (parseInt(HTML) + parseInt(CSS) + parseInt(JS) + parseInt(PHP)) / 4;
-            
-                if (HTML < 50) {
-                    if (total > 12.5) {
-                        alert("Vous avez un niveau débutant en programmation. \n Je vous recommende de ne pas vous éparpiller, et de vous concentrer sur un langage à la fois, le HTML d'abord.");
-                        mission("HTML");
-                    } else {
-                        alert("Vous êtes débutant en programmation, mais vous arrivez à ne pas vous éparpiller. \n Une fois votre niveau amélioré en HTML, je vous recommande de continuer à vous concentrer sur le CSS");
-                    }
-                }
-                if (HTML >= 50 && HTML < 75) {
-                    if (CSS < 50) {
-                        alert("Vous avez un niveau intermédiaire en HTML, mais vous êtes débutant en CSS. \n Je vous recommande de vous concentrer sur le CSS pour améliorer votre niveau.");
-                        mission("CSS");
-                    } else {
-                        alert("Vous avez un niveau intermédiaire en HTML et CSS, mais vous êtes débutant en JavaScript. \n Je vous recommande de vous former sur une base de JavaScript pour améliorer votre niveau.");
-                        mission("JavaScript");
-                    }
-                }
-                if (HTML >= 75 && HTML < 80) {
-                    if (CSS < 75 ) {
-                        alert("Vous avez un niveau avancé en HTML, mais vous n'avez pas le niveau en CSS. \n Je vous recommande de vous concentrer sur le CSS pour améliorer votre niveau.");
-                        mission("CSS");
-                    } else if (JS < 75) {
-                        alert("Vous avez un niveau avancé en HTML et CSS, mais vous n'avez pas le niveau en JavaScript. \n Je vous recommande de vous améliorer en JavaScript pour améliorer votre niveau.");
-                        mission("JavaScript");
-                    } else if (PHP < 75) {
-                        alert("Vous avez un niveau avancé en HTML, CSS et JavaScript, mais vous avez un niveau plus faible en PHP. \n Je vous recommande de vous focaliser un peu sur PHP pour améliorer votre niveau.");
-                        mission("PHP");
-                    } else {
-                        alert("Vous avez déjà un super niveau avancé en HTML, CSS, JS, et PHP. \n Je vous recommande de faire le point sur vos faiblesses restantes et devenir le roi du développement web.");
-                    }
-                }
-                if (HTML >= 80 && total > 76.25) {
-                    alert("Vous avez un niveau expert en programmation !" );
-                    mission("Procrastination");
-                }
-            }
-            document.getElementById("returns3").innerHTML = "Cliquez sur le titre pour lancer l'exercice."
-        </script>
-    </div>
+<body>
+   
     <div>
         <h1 onclick="FizzBuzz();">Exercice 4A : FizzBuzz Base</h1>
         <p id="return4"></p>
@@ -236,74 +128,74 @@
         </script>
     </div>
     <div>
-        <h2>Chi-Fou-Mi – 2 manches gagnantes</h2>
+        <h2>Chi-Fou-Mi - 2 manches gagnantes</h2>
         <button onclick="jouer('pierre')">Pierre</button>
         <button onclick="jouer('feuille')">Feuille</button>
         <button onclick="jouer('ciseaux')">Ciseaux</button>
 
         <div id="return9"></div>
           <script>
-    const choixPossibles = ["pierre", "feuille", "ciseaux"];
-    let scoreUtilisateur = 0;
-    let scoreOrdinateur = 0;
-    let manches = 0;
-    let partieTerminee = false;
+            const choixPossibles = ["pierre", "feuille", "ciseaux"];
+            let scoreUtilisateur = 0;
+            let scoreOrdinateur = 0;
+            let manches = 0;
+            let partieTerminee = false;
 
-    function jouer(choixUtilisateur) {
-      if (partieTerminee) return;
+            function jouer(choixUtilisateur) {
+            if (partieTerminee) return;
 
-      const choixOrdinateur = choixPossibles[Math.floor(Math.random() * 3)];
-      let message = `Vous : <strong>${choixUtilisateur}</strong> | Ordinateur : <strong>${choixOrdinateur}</strong> → `;
+            const choixOrdinateur = choixPossibles[Math.floor(Math.random() * 3)];
+            let message = "Vous : <strong>${choixUtilisateur}</strong> | Ordinateur : <strong>${choixOrdinateur}</strong> → ";
 
-      if (choixUtilisateur === choixOrdinateur) {
-        message += "Égalité !<br>";
-        document.getElementById("return9").innerHTML += message;
-        return;
-      }
+            if (choixUtilisateur === choixOrdinateur) {
+                message += "Égalité !<br>";
+                document.getElementById("return9").innerHTML += message;
+                return;
+            }
 
-      const utilisateurGagne =
-        (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") ||
-        (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") ||
-        (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille");
+            const utilisateurGagne =
+                (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") ||
+                (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") ||
+                (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille");
 
-      if (utilisateurGagne) {
-        scoreUtilisateur++;
-        manches++;
-        message += "Vous gagnez ce tour !<br>";
-      } else {
-        scoreOrdinateur++;
-        manches++;
-        message += "L'ordinateur gagne ce tour !<br>";
-      }
+            if (utilisateurGagne) {
+                scoreUtilisateur++;
+                manches++;
+                message += "Vous gagnez ce tour !<br>";
+            } else {
+                scoreOrdinateur++;
+                manches++;
+                message += "L'ordinateur gagne ce tour !<br>";
+            }
 
-      document.getElementById("return9").innerHTML += message;
+            document.getElementById("return9").innerHTML += message;
 
-      if (scoreUtilisateur === 2 || scoreOrdinateur === 2 || manches === 3) {
-        partieTerminee = true;
-        afficherResultatFinal();
-      }
-    }
+            if (scoreUtilisateur === 2 || scoreOrdinateur === 2 || manches === 3) {
+                partieTerminee = true;
+                afficherResultatFinal();
+            }
+            }
 
-    function afficherResultatFinal() {
-      let resultat = "<hr><strong>Résultat final : </strong>";
-      if (scoreUtilisateur === 2) {
-        resultat += "🎉 Vous avez gagné la partie !";
-      } else if (scoreOrdinateur === 2) {
-        resultat += "😞 L'ordinateur a gagné la partie.";
-      } else {
-        resultat += "Match nul (trop d’égalités).";
-      }
-      document.getElementById("return9").innerHTML += resultat + "<br><br><button onclick='resetPartie()'>Rejouer</button>";
-    }
+            function afficherResultatFinal() {
+            let resultat = "<hr><strong>Résultat final : </strong>";
+            if (scoreUtilisateur === 2) {
+                resultat += "Vous avez gagné la partie !";
+            } else if (scoreOrdinateur === 2) {
+                resultat += "L'ordinateur a gagné la partie.";
+            } else {
+                resultat += "Match nul (trop d'égalités).";
+            }
+            document.getElementById("return9").innerHTML += resultat + "<br><br><button onclick='resetPartie()'>Rejouer</button>";
+            }
 
-    function resetPartie() {
-      scoreUtilisateur = 0;
-      scoreOrdinateur = 0;
-      manches = 0;
-      partieTerminee = false;
-      document.getElementById("return9").innerHTML = "";
-    }
-  </script>
+            function resetPartie() {
+            scoreUtilisateur = 0;
+            scoreOrdinateur = 0;
+            manches = 0;
+            partieTerminee = false;
+            document.getElementById("return9").innerHTML = "";
+            }
+        </script>
 <!-- 
         <h1 onclick="chiFouMi();">ChiFouMi</h1>
         <h1 onclick="chiFouMiTernary();">ChiFouMi Ternaire</h1>
