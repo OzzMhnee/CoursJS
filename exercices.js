@@ -241,7 +241,73 @@ function fizzBuzz() {
 function fizzBuzzTernary() { for (let i = 1; i<20; i++) document.getElementById("scndFizz").innerHTML += (i % 15 === 0) ? "FizzBuzz -" : (i % 3 === 0) ? "Fizz -" : (i % 5 === 0) ? "Buzz -" : i + "-"; }
 // #endregion
 
+// #region Calculatrice
 
+// #endregion
+
+// #region ChiFouMi
+
+            const choixPossibles = ["pierre", "feuille", "ciseaux"];
+            let scoreUtilisateur = 0;
+            let scoreOrdinateur = 0;
+            let manches = 0;
+            let partieTerminee = false;
+
+            function jouer(choixUtilisateur) {
+            if (partieTerminee) return;
+
+            const choixOrdinateur = choixPossibles[Math.floor(Math.random() * 3)];
+            let message = `Vous : <strong>${choixUtilisateur}</strong> | Ordinateur : <strong>${choixOrdinateur}</strong> → `;
+
+            if (choixUtilisateur === choixOrdinateur) {
+                message += "Égalité !<br>";
+                document.getElementById("return9").innerHTML += message;
+                return;
+            }
+
+            const utilisateurGagne =
+                (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") ||
+                (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") ||
+                (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille");
+
+            if (utilisateurGagne) {
+                scoreUtilisateur++;
+                manches++;
+                message += "Vous gagnez ce tour !<br>";
+            } else {
+                scoreOrdinateur++;
+                manches++;
+                message += "L'ordinateur gagne ce tour !<br>";
+            }
+
+            document.getElementById("return9").innerHTML += message;
+
+            if (scoreUtilisateur === 2 || scoreOrdinateur === 2 || manches === 3) {
+                partieTerminee = true;
+                afficherResultatFinal();
+            }
+            }
+
+            function afficherResultatFinal() {
+            let resultat = "<hr><strong>Résultat final : </strong>";
+            if (scoreUtilisateur === 2) {
+                resultat += "Vous avez gagné la partie !";
+            } else if (scoreOrdinateur === 2) {
+                resultat += "L'ordinateur a gagné la partie.";
+            } else {
+                resultat += "Match nul (trop d'égalités).";
+            }
+            document.getElementById("return9").innerHTML += resultat + "<br><br><button onclick='resetPartie()'>Rejouer</button>";
+            }
+
+            function resetPartie() {
+            scoreUtilisateur = 0;
+            scoreOrdinateur = 0;
+            manches = 0;
+            partieTerminee = false;
+            document.getElementById("return9").innerHTML = "";
+            }
+// #endregion
 
 // #region Epicerie : Fin de Serie
 let initialList = ["backpack", "pen", "mealCase","computer", "surprise", "paper", "eraser", "markers", "pencilcase", "pencil", "multicolor pen", "diary"]
@@ -267,10 +333,10 @@ document.getElementById("checkProduct").addEventListener("click", function () {
 });
 // #endregion 
 
-
 // #region lePendu
 
 let penduState = null;
+let error = 0;
 
 function lePendu() {
     const words = [
@@ -308,7 +374,7 @@ function lePendu() {
             disableInput();
         }
     }
-
+ 
     function checkLose() {
         if (attempts <= 0) {
             document.getElementById("penduResult").innerText = "Perdu ! Le mot était : " + word;
@@ -327,13 +393,23 @@ function lePendu() {
         document.getElementById("guessButton").disabled = false;
     }
 
+    function hiddenSvg() {
+        for (let i = 1; i < 9; i++) {
+            document.querySelectorAll(".error"+i).forEach(el => el.style.visibility = "hidden");
+        }
+    }
+
     // Initialisation
     enableInput();
     displayWord();
     displayStatus();
+    hiddenSvg();
+    error = 0;
 
     // Gestion du bouton "Check"
     document.getElementById("guessButton").onclick = function () {
+        
+        
         if (finished) return;
         const guess = document.getElementById("guessInput").value.toLowerCase();
         document.getElementById("guessInput").value = "";
@@ -348,19 +424,26 @@ function lePendu() {
         guessedLetters.push(guess);
         if (!word.includes(guess)) {
             attempts--;
+            error++;
+            document.querySelectorAll(`.error${error}`).forEach(el => el.style.visibility = "visible");
         }
+        
+        
+
         displayWord();
         displayStatus();
         checkWin();
         checkLose();
     };
+    
+    
 }
+
 
 // Lancer une nouvelle partie au clic
 document.getElementById("startPendu").addEventListener("click", lePendu);
 
 // #endregion
-
 
 // #region Annuaire téléphonique
 
@@ -452,7 +535,15 @@ function deleteContact() {
 document.getElementById("addContact").addEventListener("click", addContact);
 document.getElementById("searchContact").addEventListener("click", searchContact);
 document.getElementById("deleteContact").addEventListener("click", deleteContact);
-
+document.addEventListener("keydown", function(event) {
+    if (event.key.toLowerCase() === "s") {
+        searchContact();
+    } else if (event.key.toLowerCase() === "d") {
+        deleteContact();
+    } else if (event.key.toLowerCase() === "a") {
+        addContact();
+    }
+});
 // Affichage initial
 displayContacts();
 

@@ -66,7 +66,7 @@
             <span onclick="fizzBuzzTernary();"> --> Run the ternary's one</span>
             <div id="scndFizz"></div>
         </div>
-        <div class="exercices" id="fifth">
+        <div class="exercices" id="calculary">
             <h2>Calculette</h2>
             <table>
                 <caption>This is a tableau </caption>
@@ -89,7 +89,16 @@
                 </tfoot>
             </table>
         </div>
-
+        <div class="exercices" id="ChiFouMi">
+            <h2>Chi-Fou-Mi <br> 2 manches gagnantes</h2>
+            
+            <div id="choicesChiFouMi">
+                <button onclick="jouer('pierre')">Pierre</button>
+                <button onclick="jouer('feuille')">Feuille</button>
+                <button onclick="jouer('ciseaux')">Ciseaux</button>
+            </div>
+            <div id="return9"></div>
+        </div>
         <div class="exercices" id="epicerie">
             <h2>Promo Fin de série</h2>
             <h6>This, is an exercice using only array.</h6>
@@ -139,8 +148,7 @@
         <div class="exercices" id="lePendu">
             <img id="cordePendu" src="/img/istockphoto-1020025454-612x612.png">
             <h2>Le Pendu</h2>
-            <h6>Here, the exercice is to make a game of hangman with a word that the user will have to guess</h6>
-            
+                       
 
             <div id="penduGame">
                 <button id="startPendu">Beggin a new game</button>
@@ -150,6 +158,22 @@
                 <span id="tryLeft"></span>
                 <span id="penduResult"></span>
             </div>
+            <svg witdh="150" height="200" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="150" x2="200" y2="150" stroke="black" stroke-width="2" />
+                <line x1="50" y1="150" x2="15" y2="100" stroke="black" stroke-width="2" class="error1" />
+                <line x1="15" y1="0" x2="15" y2="150" stroke="black" stroke-width="2" class="error1" />
+                <line x1="50" y1="0" x2="15" y2="50" stroke="black" stroke-width="2" class="error2" />
+                <line x1="0" y1="0" x2="125" y2="0" stroke="black" stroke-width="2" class="error2" />
+                <line x1="125" y1="0" x2="125" y2="15" stroke="black" stroke-width="2" class="error3" />
+                <ellipse cx="125" cy="30" rx="10" ry="15" fill="none" stroke="black" stroke-width="2" class="error4" />
+                <ellipse cx="125" cy="80" rx="14" ry="35" fill="none" stroke="black" stroke-width="2" class="error5" />
+                <line x1="115" y1="57" x2="100" y2="95" stroke="black" stroke-width="2" class="error6" />
+                <line x1="135" y1="57" x2="150" y2="95" stroke="black" stroke-width="2" class="error6" />
+                <line x1="130" y1="112" x2="135" y2="140" stroke="black" stroke-width="2" class="error7" />
+                <line x1="135" y1="140" x2="140" y2="140" stroke="black" stroke-width="2" class="error8" />
+                <line x1="120" y1="112" x2="115" y2="140" stroke="black" stroke-width="2" class="error7" />
+                <line x1="110" y1="140" x2="115" y2="140" stroke="black" stroke-width="2" class="error8" />
+            </svg>
 
         </div>
         <div class="exercices" id="repertoireTelephonique">
@@ -158,9 +182,18 @@
             <div id="phoneBook">
                 <input type="text" id="nameInput" placeholder="Enter name">
                 <input type="text" id="numberInput" placeholder="Enter phone number">
-                <button id="addContact">Add Contact</button>
-                <button id="searchContact">Search Contact</button>
-                <button id="deleteContact">Delete Contact</button>
+                <div>
+                    <button id="addContact">Add Contact</button>
+                    <h6>[shortcut : A]</h6>
+                </div>
+                <div>
+                    <button id="searchContact">Search Contact</button>
+                    <h6>[shortcut : S]</h6>
+                </div>
+                <div>
+                    <button id="deleteContact">Delete Contact</button>
+                    <h6>[shortcut : D]</h6>
+                </div>
                 <h4 id="phoneBookResult"></h4>
                 <h6>Contacts:</h6>
                 <ul id="contactList"></ul>

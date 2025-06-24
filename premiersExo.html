@@ -10,30 +10,7 @@
 
 <body>
    
-    <div>
-        <h1 onclick="FizzBuzz();">Exercice 4A : FizzBuzz Base</h1>
-        <p id="return4"></p>
-        <script>
-            function FizzBuzz() {
-                for (let i = 1; i < 200; i++) {
-                    if (i % 3 === 0 && i % 5 === 0) {
-                        document.getElementById("return4").innerHTML += "FizzBuzz<br>" ;
-                    } else if (i % 3 === 0) {
-                        document.getElementById("return4").innerHTML += "Fizz<br>";
-                    } else if (i % 5 === 0) {
-                        document.getElementById("return4").innerHTML += "Buzz<br>";
-                    } else {
-                        document.getElementById("return4").innerHTML += i +"<br>";
-                    }
-                }
-            }
-        </script>
-        <h1 onclick="FizzBuzzTernary();"> Exercice 4B : FizzBuzz Ternaire</h1>
-        <p id="return5"></p>
-        <script>
-            function FizzBuzzTernary() { for (let i = 1 ; i < 200; i++) document.getElementById("return5").innerHTML += (i % 15 === 0) ? "FizzBuzz<br>" : (i % 3 === 0) ? "Fizz<br>" : (i % 5 === 0) ? "Buzz<br>" : i + "<br>"; }
-        </script>
-    </div>
+    
     <div>
         <h1 onclick="calculetteBasique();">Calculette Simple</h1>
         <p id="return6"></p>
@@ -128,74 +105,7 @@
         </script>
     </div>
     <div>
-        <h2>Chi-Fou-Mi - 2 manches gagnantes</h2>
-        <button onclick="jouer('pierre')">Pierre</button>
-        <button onclick="jouer('feuille')">Feuille</button>
-        <button onclick="jouer('ciseaux')">Ciseaux</button>
-
-        <div id="return9"></div>
-          <script>
-            const choixPossibles = ["pierre", "feuille", "ciseaux"];
-            let scoreUtilisateur = 0;
-            let scoreOrdinateur = 0;
-            let manches = 0;
-            let partieTerminee = false;
-
-            function jouer(choixUtilisateur) {
-            if (partieTerminee) return;
-
-            const choixOrdinateur = choixPossibles[Math.floor(Math.random() * 3)];
-            let message = "Vous : <strong>${choixUtilisateur}</strong> | Ordinateur : <strong>${choixOrdinateur}</strong> → ";
-
-            if (choixUtilisateur === choixOrdinateur) {
-                message += "Égalité !<br>";
-                document.getElementById("return9").innerHTML += message;
-                return;
-            }
-
-            const utilisateurGagne =
-                (choixUtilisateur === "pierre" && choixOrdinateur === "ciseaux") ||
-                (choixUtilisateur === "feuille" && choixOrdinateur === "pierre") ||
-                (choixUtilisateur === "ciseaux" && choixOrdinateur === "feuille");
-
-            if (utilisateurGagne) {
-                scoreUtilisateur++;
-                manches++;
-                message += "Vous gagnez ce tour !<br>";
-            } else {
-                scoreOrdinateur++;
-                manches++;
-                message += "L'ordinateur gagne ce tour !<br>";
-            }
-
-            document.getElementById("return9").innerHTML += message;
-
-            if (scoreUtilisateur === 2 || scoreOrdinateur === 2 || manches === 3) {
-                partieTerminee = true;
-                afficherResultatFinal();
-            }
-            }
-
-            function afficherResultatFinal() {
-            let resultat = "<hr><strong>Résultat final : </strong>";
-            if (scoreUtilisateur === 2) {
-                resultat += "Vous avez gagné la partie !";
-            } else if (scoreOrdinateur === 2) {
-                resultat += "L'ordinateur a gagné la partie.";
-            } else {
-                resultat += "Match nul (trop d'égalités).";
-            }
-            document.getElementById("return9").innerHTML += resultat + "<br><br><button onclick='resetPartie()'>Rejouer</button>";
-            }
-
-            function resetPartie() {
-            scoreUtilisateur = 0;
-            scoreOrdinateur = 0;
-            manches = 0;
-            partieTerminee = false;
-            document.getElementById("return9").innerHTML = "";
-            }
-        </script>
+        
 <!-- 
         <h1 onclick="chiFouMi();">ChiFouMi</h1>
         <h1 onclick="chiFouMiTernary();">ChiFouMi Ternaire</h1>
