@@ -57,7 +57,7 @@ const zehirmahnn = new Personnage("Zehirmahnn", "Zorlim", "Mage du feu", 110, [
 ]);
 const guertrude = new Personnage("Guertrude", "Humaine", "Guerrière", 80, [
     new Competence("Coup de hache", 18),
-    new Competence("Cri de guerre", 0)
+    new Competence("Taper, puis viser", 0)
 ]);
 const trichelieu = new Personnage("Trichelieu", "Elfe noir", "Assassin", 70, [
     new Competence("Coup de dague", 22),
