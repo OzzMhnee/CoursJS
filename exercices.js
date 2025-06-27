@@ -243,6 +243,29 @@ function fizzBuzzTernary() { for (let i = 1; i<20; i++) document.getElementById(
 
 // #region Calculatrice
 
+// Définitions des opérations
+function factorial(a) {
+    if (a < 0) return "Indéfini";
+    if (a === 0 || a === 1) return 1;
+    let result = 1;
+    for (let i = 2; i <= a; i++) {
+        result *= i; }
+    return result; }
+function divide(a,b) {
+    return a / b; }
+function multiply(a,b) { 
+    return a * b; }
+function subtract(a,b) {
+    return a - b; }
+function addition(a, b) {
+    return a + b; }
+function carre(a) {
+    return a * a }
+
+
+// Functions Head
+// document.getElementById("calcuScreen").setAttribute("style", "background-color:rgba(237, 247, 98, 0.74) !important;");
+
 // #endregion
 
 // #region ChiFouMi
