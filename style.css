@@ -10,6 +10,73 @@
     font-family:'digital-clock-font';
     src: url('/font/digital-7.regular.ttf'); }
 
+/* #region PopUp */
+
+/* Fond semi-transparent couvrant tout l'écran */
+.parallax{
+  background-image:url(https://picsum.photos/1200/800);/*definit mon image de fond*/
+  height: 100%;/*permet de dire de remplir 100% de son conteneur*/
+  background-attachment: fixed;/*fixe l'image de fond au scroll*/
+  background-position: center;/*positionne l'image de fond au centre*/
+  background-repeat: no-repeat;/*empeche la répétition de l'image*/
+  background-size: cover;/*redimensionne l'image pour couvrir l'intégralité de l'element*/
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.popUpText{
+  color: black;
+}
+
+/* Affichage de la pop-up */
+.popup-overlay.active {
+  display: flex;
+}
+
+/* Contenu de la pop-up avec animation */
+.popup-content {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  position: relative;
+  min-width: 300px;
+  box-shadow: 0 4px 16px rgba(212, 212, 212, 0.2);
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+/* Animation d'apparition */
+.popup-overlay.active .popup-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Bouton de fermeture */
+.close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #888;
+}
+.close-btn:hover {
+  color: #e74c3c;
+}
+
+/* #endregion PopUp */
+
 /* #region Title */
 header {
     display: flex;
@@ -155,14 +222,102 @@ text-wrap: wrap; }
 /* #endregion Epicerie */
 
 /* #region Calculary */
-#calcu {
+ /* #calcu {
+            border-collapse: collapse;
+            width: 300px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        #calcuScreen {
+            width: 100%;
+            height: 50px;
+            text-align: right;
+            padding: 10px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #e0e0e0;
+            color: #333;
+            font-family: monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #calcuScreen.on {
+            background-color: #ffffcc;
+            box-shadow: 0 0 10px #ffff99;
+            color: #000;
+        }
+
+        #calcuScreen.off {
+            background-color: #a0a0a0;
+            color: #707070;
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 2px;
+            height: 28px;
+            background-color: #000;
+            animation: blink 1s infinite;
+            position: absolute;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        #calcu th, #calcu td {
+            border: 1px solid #888;
+            text-align: center;
+            padding: 15px 0;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            background-color: #e8e8e8;
+            transition: background-color 0.2s;
+        }
+
+        #calcu th:hover, #calcu td:hover {
+            background-color: #d0d0d0;
+        }
+
+        .disabled {
+            color: #aaa !important;
+            background-color: #f5f5f5 !important;
+            cursor: not-allowed !important;
+        }
+
+        #calOn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #calOff {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #calSupp {
+            background-color: #ff9800;
+            color: white;
+        } */
+ #calcu {
+    
     display: flex;
     font-family: 'digital-clock-font';
     flex-direction: column;
-    gap: 3px; 
+    gap: 5px; 
     border: 1px solid black;
     border-radius: 20px;
-    background-color: var(--color-blue);}
+    background-color: var(--color-blue);
+    border-spacing: 10px;}
 thead th {
     text-align: center;
     font-size: 12px;
@@ -179,8 +334,8 @@ thead > tr {
     justify-content: flex-end; }
 tbody td, tbody th {
     text-align: center;
-    font-size: 30px;
-    padding: .6em;
+    font-size: 25px;
+    padding: .5em;
     font-family: 'digital-clock-font';
     border: 1px solid black;
     border-radius: 20px;
@@ -188,15 +343,39 @@ tbody td, tbody th {
     cursor: pointer;
     width: 26px;}
 #calcuScreen {
-    height: 1em;
-    background-color: rgb(78, 78, 78) !important;
+    height: 2em;
     text-align: right;
+    
     font-family: 'Courier New', Courier, monospace;
     cursor: default !important; }
+#calcuScreen.on {
+    background-color: #ffffcc;
+    box-shadow: 0 0 10px #ffff99;
+    color: #000; }
+#calcuScreen.off {
+    background-color: #000000;
+    color: #707070; }
+
 tbody {
-    padding: 1em; }
+    padding: 1em;
+    ;
+} 
+#cursor {
+    display: inline-block;
+    width: 2px;
+    height: 28px;
+    background-color: #000;
+    animation: blink 1s infinite;
+    position: absolute; }
 
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; } }
 
+.disabled {
+    color: #aaa !important;
+    background-color: #f5f5f5 !important;
+    cursor: not-allowed !important; }
 /* #endregion */
 
 /* #region ChiFouMi */
@@ -207,7 +386,6 @@ tbody {
     font-size: 13px;
     text-align: center; }
 /* #endregion ChiFouMi */
-
 
 /* #region Annuaire Tel */
 
@@ -220,3 +398,9 @@ tbody {
     align-items: center;
     gap: 10px; }
 /* #endregion Epicerie */
+
+/* #region filtres */
+
+
+
+/* #endregion filtres */

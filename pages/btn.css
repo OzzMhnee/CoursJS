@@ -1,0 +1,21 @@
+.btn-bordered {
+    font-size: 1.125rem;
+    line-height: 1.56;
+    font-weight: 500;
+    color: var(--color-contrast);
+    padding: 0.75rem 2.25rem;
+    border-radius: 2rem;
+    border: 1px solid var(--color-contrast);
+    transition: 0.3s;
+    width: max-content;
+    &:hover {
+        background-color: var(--color-contrast);
+        color: var(--color-text-inverse);
+    }
+}
+
+@media (min-width: 700px) {
+    .btn-bordered {
+        padding-block: 1.125rem;
+    }
+}

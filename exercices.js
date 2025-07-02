@@ -1,3 +1,15 @@
+// POP UP // 
+// Affiche la pop-up automatiquement au chargement de la page
+window.onload = function() {
+  document.getElementById('popup').classList.add('active');
+};
+
+// Ferme la pop-up au clic sur la croix
+document.getElementById('close-btn').onclick = function() {
+  document.getElementById('popup').classList.remove('active');
+};
+
+
 // #region Définitions des types
 
 function getDefString() {
@@ -261,6 +273,215 @@ function addition(a, b) {
     return a + b; }
 function carre(a) {
     return a * a }
+
+ // État de la calculatrice
+let isOn = false;
+let displayValue = "";
+let cursorPosition = 0;
+const display = document.getElementById('display');
+const screen = document.getElementById('calcuScreen');
+
+// Fonctions mathématiques
+function factorial(a) {
+    if (a < 0) return "Indéfini";
+    if (a === 0 || a === 1) return 1;
+    let result = 1;
+    for (let i = 2; i <= a; i++) {
+        result *= i; }
+    return result; 
+}
+
+function divide(a, b) { return a / b; }
+function multiply(a, b) { return a * b; }
+function subtract(a, b) { return a - b; }
+function addition(a, b) { return a + b; }
+function carre(a) { return a * a; }
+
+// Évaluation des expressions avec priorités
+function evaluateExpression(expr) {
+    try {
+        // Gestion factorielle
+        expr = expr.replace(/f\(([^)]+)\)/g, (_, num) => factorial(parseFloat(num)));
+        
+        // Gestion carré
+        expr = expr.replace(/(\d+(\.\d+)?)\²/g, (_, num) => carre(parseFloat(num)));
+        
+        // Conversion en notation JS
+        expr = expr.replace(/÷/g, '/').replace(/×/g, '*');
+        
+        // Gestion des priorités avec parenthèses
+        while (expr.includes('(')) {
+            expr = expr.replace(/\(([^()]+)\)/g, (_, inner) => {
+                return evalPrimary(inner);
+            });
+        }
+        
+        return evalPrimary(expr);
+    } catch (e) {
+        return "Erreur";
+    }
+}
+
+function evalPrimary(expr) {
+    const tokens = expr.match(/(\d+\.\d+|\d+|[+\-*/^])/g) || [];
+    let numbers = [];
+    let operators = [];
+    
+    // Traitement des nombres et opérateurs
+    for (let token of tokens) {
+        if (['+', '-', '*', '/'].includes(token)) {
+            while (operators.length > 0 && 
+                    ['*', '/'].includes(operators[operators.length - 1]) &&
+                    ['+', '-'].includes(token)) {
+                applyOperator(numbers, operators);
+            }
+            operators.push(token);
+        } else {
+            numbers.push(parseFloat(token));
+        }
+    }
+    
+    while (operators.length > 0) {
+        applyOperator(numbers, operators);
+    }
+    
+    return numbers[0];
+}
+
+function applyOperator(numbers, operators) {
+    const op = operators.pop();
+    const b = numbers.pop();
+    const a = numbers.pop();
+    
+    switch (op) {
+        case '+': numbers.push(a + b); break;
+        case '-': numbers.push(a - b); break;
+        case '*': numbers.push(a * b); break;
+        case '/': numbers.push(a / b); break;
+    }
+}
+
+// Gestion de l'affichage et curseur
+function updateDisplay() {
+    display.innerHTML = displayValue.substring(0, cursorPosition) + 
+                        '<span id="cursor"></span>' + 
+                        displayValue.substring(cursorPosition);
+}
+
+// Activation/Désactivation
+function turnOn() {
+    isOn = true;
+    screen.classList.remove('off');
+    screen.classList.add('on');
+    document.querySelectorAll('#calcu td:not(#calOn)').forEach(btn => {
+        btn.classList.remove('disabled');
+    });
+    updateDisplay();
+}
+
+function turnOff() {
+    isOn = false;
+    screen.classList.remove('on');
+    screen.classList.add('off');
+    document.querySelectorAll('#calcu td:not(#calOn)').forEach(btn => {
+        btn.classList.add('disabled');
+    });
+    displayValue = "";
+    cursorPosition = 0;
+    updateDisplay();
+}
+
+// Gestion des entrées
+function insertCharacter(char) {
+    if (!isOn) return;
+    
+    displayValue = displayValue.substring(0, cursorPosition) + 
+                    char + 
+                    displayValue.substring(cursorPosition);
+    cursorPosition += char.length;
+    updateDisplay();
+}
+
+function deleteCharacter() {
+    if (!isOn || cursorPosition === 0) return;
+    
+    displayValue = displayValue.substring(0, cursorPosition - 1) + 
+                    displayValue.substring(cursorPosition);
+    cursorPosition--;
+    updateDisplay();
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    // État initial
+    turnOff();
+    
+    // Gestion des boutons
+    document.getElementById('calOn').addEventListener('click', turnOn);
+    document.getElementById('calOff').addEventListener('click', turnOff);
+    document.getElementById('calSupp').addEventListener('click', deleteCharacter);
+    
+    // Boutons numériques et opérations
+    const buttons = [
+        'zero', 'one', 'two', 'three', 'four', 'five', 
+        'six', 'seven', 'eight', 'nine', 'comma',
+        'divide', 'multiply', 'subtract', 'tot',
+        'factorial', 'carre', 'equal'
+    ];
+    
+    buttons.forEach(btnId => {
+        document.getElementById(btnId).addEventListener('click', () => {
+            if (!isOn) return;
+            
+            const btn = document.getElementById(btnId);
+            switch(btnId) {
+                case 'factorial': 
+                    insertCharacter('f()');
+                    cursorPosition--;
+                    break;
+                case 'carre': 
+                    insertCharacter('²'); 
+                    break;
+                case 'equal': 
+                    const result = evaluateExpression(displayValue);
+                    displayValue = String(result);
+                    cursorPosition = displayValue.length;
+                    break;
+                default: 
+                    insertCharacter(btn.textContent);
+            }
+            updateDisplay();
+        });
+    });
+    
+    // Focus pour curseur
+    screen.addEventListener('click', (e) => {
+        if (!isOn) return;
+        
+        const rect = display.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        let charPos = 0;
+        let widthSum = 0;
+        
+        for (let i = 0; i <= displayValue.length; i++) {
+            const testSpan = document.createElement('span');
+            testSpan.textContent = displayValue.substring(0, i);
+            document.body.appendChild(testSpan);
+            const w = testSpan.offsetWidth;
+            document.body.removeChild(testSpan);
+            
+            if (x < widthSum + (w - widthSum) / 2) {
+                charPos = i;
+                break;
+            }
+            widthSum = w;
+            charPos = i;
+        }
+        
+        cursorPosition = charPos;
+        updateDisplay();
+    });
+});
 
 
 // Functions Head
@@ -569,6 +790,14 @@ document.addEventListener("keydown", function(event) {
 displayContacts();
 
     
+
+
+
+// #endregion Annuaire téléphonique
+
+
+// #region Annuaire téléphonique
+
 
 
 
