@@ -1,14 +1,14 @@
-// POP UP // 
+// #region PopUp
 // Affiche la pop-up automatiquement au chargement de la page
-window.onload = function() {
-  document.getElementById('popup').classList.add('active');
-};
+// window.onload = function() {
+//   document.getElementById('popup').classList.add('active');
+// };
 
-// Ferme la pop-up au clic sur la croix
-document.getElementById('close-btn').onclick = function() {
-  document.getElementById('popup').classList.remove('active');
-};
-
+// // Ferme la pop-up au clic sur la croix
+// document.getElementById('close-btn').onclick = function() {
+//   document.getElementById('popup').classList.remove('active');
+// };
+// #endregion PopUp
 
 // #region Définitions des types
 
@@ -122,7 +122,6 @@ document.getElementById("checkType").addEventListener("click", function () {
 });
 // #endregion
 
-
 // #region Medical Assistent
 document.getElementById("checkPain").addEventListener("click", function () {
     let localisation = document.getElementById("painInput").value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(" ")[0];
@@ -232,7 +231,6 @@ document.getElementById("checkDev").addEventListener("click", troisiemeExo);
 
 // #endregion
 
-
 // #region FizzBuzz
 
 ///FIRST
@@ -256,23 +254,23 @@ function fizzBuzzTernary() { for (let i = 1; i<20; i++) document.getElementById(
 // #region Calculatrice
 
 // Définitions des opérations
-function factorial(a) {
-    if (a < 0) return "Indéfini";
-    if (a === 0 || a === 1) return 1;
-    let result = 1;
-    for (let i = 2; i <= a; i++) {
-        result *= i; }
-    return result; }
-function divide(a,b) {
-    return a / b; }
-function multiply(a,b) { 
-    return a * b; }
-function subtract(a,b) {
-    return a - b; }
-function addition(a, b) {
-    return a + b; }
-function carre(a) {
-    return a * a }
+// function factorial(a) {
+//     if (a < 0) return "Indéfini";
+//     if (a === 0 || a === 1) return 1;
+//     let result = 1;
+//     for (let i = 2; i <= a; i++) {
+//         result *= i; }
+//     return result; }
+// function divide(a,b) {
+//     return a / b; }
+// function multiply(a,b) { 
+//     return a * b; }
+// function subtract(a,b) {
+//     return a - b; }
+// function addition(a, b) {
+//     return a + b; }
+// function carre(a) {
+//     return a * a }
 
  // État de la calculatrice
 let isOn = false;
@@ -795,10 +793,82 @@ displayContacts();
 
 // #endregion Annuaire téléphonique
 
+// #region filtrage
 
-// #region Annuaire téléphonique
+function applyFilters() {
+    const category = document.getElementById("categoryFilter").value;
+    const city = document.getElementById("cityFilter").value;
+    const products = document.querySelectorAll("#productList .product");
 
+    products.forEach(product => {
+        const matchCategory = !category || product.dataset.category === category;
+        const matchCity = !city || product.dataset.city === city;
+        product.style.display = (matchCategory && matchCity) ? "block" : "none";
+    });
+}
 
+// Réinitialisation des filtres
+function clearFilters() {
+    document.getElementById("categoryFilter").value = "";
+    document.getElementById("cityFilter").value = "";
+    applyFilters();
+}
 
+// Ajout des écouteurs d'événements
+document.getElementById("applyFilters").addEventListener("click", applyFilters);
+document.getElementById("clearFilters").addEventListener("click", clearFilters);
 
-// #endregion Annuaire téléphonique
+// #endregion Filtrage
+
+// #region filtrage2
+
+function filtrer(categorie) {
+    // Sélectionne tous les éléments <article> dans la section #produits
+    const produits = document.querySelectorAll('#produits article');
+    
+    // Parcourt chaque produit de la liste
+    produits.forEach(produit => {
+        // Si la catégorie est "all" OU si le produit possède la classe de la catégorie sélectionnée
+        if (categorie === 'all' || produit.classList.contains(categorie)) {
+            // On affiche le produit (on enlève la classe 'hide')
+            produit.classList.remove('hide');
+        } else {
+            // Sinon, on masque le produit (on ajoute la classe 'hide')
+            produit.classList.add('hide');
+        }
+    });
+}
+
+// #endregion Filtrage2
+
+// #region Noeuds
+function sepiaModeHere() {
+    if (event.target.parentNode.style.filter === "sepia(50%)") {
+        event.target.parentNode.style.filter = "";
+    } else {
+        event.target.parentNode.style.filter = "sepia(50%)";
+    }
+}
+
+function sepiaModeBefore() {
+    if (event.target.parentNode.previousElementSibling.style.filter === "sepia(50%)") {
+        event.target.parentNode.previousElementSibling.style.filter = "";
+    } else {
+       event.target.parentNode.previousElementSibling.style.filter = "sepia(50%)";
+    }
+}
+
+function sepiaModeAll() {
+    const grandParent = event.target.parentNode.parentNode;
+    const enfants = grandParent.children;
+    const allSepia = Array.from(enfants).every(child => child.style.filter === "sepia(50%)");
+
+    Array.from(enfants).forEach(child => {
+        child.style.filter = allSepia ? "" : "sepia(50%)";
+    });
+}
+document.getElementById('btn-sepia-mode-here').addEventListener("click", sepiaModeHere);
+document.getElementById('btn-sepia-mode-before').addEventListener("click", sepiaModeBefore);
+document.getElementById('btn-sepia-mode-all').addEventListener("click", sepiaModeAll);
+
+// #endregion Noeuds

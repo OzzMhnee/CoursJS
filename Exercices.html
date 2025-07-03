@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exercices JavaScript</title>
-    <script src="/exercices.js" defer></script>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="parallax">
@@ -232,12 +231,132 @@
                 <h6>Contacts:</h6>
                 <ul id="contactList"></ul>
             </div>
-
         </div>
-        
+        <div class="exercices" id="filtrage">
+            <h2>Filtrage de produits</h2>
+            <div id="filterSection">
+                
+                <h6>Ce code permet de filtrer les produits par catégorie et par ville.</h6>
+                <div id="filterContainer">
+                    <label for="categoryFilter">Catégorie:</label>
+                    <select id="categoryFilter">
+                        <option value="">Toutes les catégories</option>
+                        <option value="viande">Viande</option>
+                        <option value="poisson">Poisson</option>
+                        <option value="laitier">Laitier</option>
+                    </select>
+                    <label for="cityFilter">Ville:</label>
+                    <select id="cityFilter">
+                        <option value="">Toutes les villes</option>
+                        <option value="Paris">Paris</option>
+                        <option value="Lyon">Lyon</option>
+                        <option value="Marseille">Marseille</option>
+                    </select>
+                </div>
+                <div>
+                    <button id="clearFilters">Effacer les filtres</button>
 
+                    <button id="applyFilters">Appliquer les filtres</button>
+                </div>
+                <div id="productList">
+                    <div class="product" data-category="viande" data-city="Paris">
+                        <h3>Steak</h3>
+                        <p>Catégorie: Viande</p>
+                        <p>Ville: Paris</p>
+                    </div>
+                    <div class="product" data-category="poisson" data-city="Lyon">
+                        <h3>Saumon</h3>
+                        <p>Catégorie: Poisson</p>
+                        <p>Ville: Lyon</p>
+                    </div>
+                    <div class="product" data-category="laitier" data-city="Marseille">
+                        <h3>Fromage</h3>
+                        <p>Catégorie: Laitier</p>
+                        <p>Ville: Marseille</p>
+                    </div>
+                    <div class="product" data-category="viande" data-city="Lyon">
+                        <h3>Poulet</h3>
+                        <p>Catégorie: Viande</p>
+                        <p>Ville: Lyon</p>
+                    </div>
+                    <div class="product" data-category="poisson" data-city="Paris">
+                        <h3>Thon</h3>
+                        <p>Catégorie: Poisson</p>
+                        <p>Ville: Paris</p>
+                    </div>
+                    <div class="product" data-category="laitier" data-city="Lyon">
+                        <h3>Yaourt</h3>
+                        <p>Catégorie: Laitier</p>
+                        <p>Ville: Lyon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="exercices" id="filtrage2">
+            <section class="filtrage-categorie">
+                <div class="filtre-bar">
+                    <label for="categorie-select">Filtrer par catégorie :</label>
+                    <select id="categorie-select" onchange="filtrer(this.value)">
+                        <option value="all">Tous</option>
+                        <option value="ludique">Ludique</option>
+                        <option value="pratique">Pratique</option>
+                        <option value="sportif">Sportif</option>
+                    </select>
+                </div>
+                <section id="produits" class="produits-grid">
+                    <article class="ludique pratique">
+                        <span class="prod-nom">iPad</span>
+                        <span class="prod-cat">Ludique, Pratique</span>
+                    </article>
+                    <article class="ludique sportif">
+                        <span class="prod-nom">Batte de baseball</span>
+                        <span class="prod-cat">Ludique, Sportif</span>
+                    </article>
+                    <article class="pratique">
+                        <span class="prod-nom">Ventilateur</span>
+                        <span class="prod-cat">Pratique</span>
+                    </article>
+                    <article class="ludique">
+                        <span class="prod-nom">Jeu d'échecs</span>
+                        <span class="prod-cat">Ludique</span>
+                    </article>
+                    <article class="sportif">
+                        <span class="prod-nom">Ballon de foot</span>
+                        <span class="prod-cat">Sportif</span>
+                    </article>
+                    <article class="pratique">
+                        <span class="prod-nom">Aspirateur</span>
+                        <span class="prod-cat">Pratique</span>
+                    </article>
+                    <article class="ludique">
+                        <span class="prod-nom">Console de jeux</span>
+                        <span class="prod-cat">Ludique</span>
+                    </article>
+                    <article class="pratique sportif">
+                        <span class="prod-nom">Vélo</span>
+                        <span class="prod-cat">Pratique, Sportif</span>
+                    </article>
+                    <article class="ludique">
+                        <span class="prod-nom">Puzzle</span>
+                        <span class="prod-cat">Ludique</span>
+                    </article>
+                    <article class="pratique">
+                        <span class="prod-nom">Cafetière</span>
+                        <span class="prod-cat">Pratique</span>
+                    </article>
+                </section>
+            </section>
+        </div> -->
+        <div class="exercices" id="W-on-node">
+            <h2>afficher/Supprime le filtre sépia</h2>
+            <h6>Exercice de ciblage par Noeuds</h6>
+            <button id="btn-sepia-mode-here">Sur cet excercice</button>
+            <button id="btn-sepia-mode-before"> Sur l'exercice précédent</button>
+            <button id="btn-sepia-mode-all"> Sur tous les exercices</button>
+        </div>
     </section>
     
 
 </body>
+<script src="/exercices.js"></script>
 </html>
