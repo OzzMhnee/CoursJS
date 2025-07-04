@@ -488,3 +488,8 @@ tbody {
   border: 1px solid #e3eaf3;
 }
 /* #endregion filtres */
+
+
+#W-on-node > svg {
+    width: 225px;
+}

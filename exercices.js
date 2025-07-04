@@ -610,6 +610,7 @@ function lePendu() {
     function checkWin() {
         if (word.split("").every(letter => letter === " " || letter === "-" || guessedLetters.includes(letter))) {
             document.getElementById("penduResult").innerText = "Bravo ! Tu as trouvé le mot : " + word;
+            swal("Good job!", "You've finded the right word!", "success");
             finished = true;
             disableInput();
         }
@@ -618,6 +619,7 @@ function lePendu() {
     function checkLose() {
         if (attempts <= 0) {
             document.getElementById("penduResult").innerText = "Perdu ! Le mot était : " + word;
+            swal("Raté!", "PatateBoy est mort à cause de vous!", "error");
             finished = true;
             disableInput();
         }
@@ -872,3 +874,6 @@ document.getElementById('btn-sepia-mode-before').addEventListener("click", sepia
 document.getElementById('btn-sepia-mode-all').addEventListener("click", sepiaModeAll);
 
 // #endregion Noeuds
+
+
+
