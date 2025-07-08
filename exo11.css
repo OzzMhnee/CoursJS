@@ -1,5 +1,12 @@
-/* 
+body {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+}
 
+
+
+/* 
 :root {
         --carousel-transition-duration: 250ms;
         --carousel-transition-ease: ease-out;
