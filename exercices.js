@@ -1,13 +1,13 @@
 // #region PopUp
 // Affiche la pop-up automatiquement au chargement de la page
-// window.onload = function() {
-//   document.getElementById('popup').classList.add('active');
-// };
+window.onload = function() {
+  document.getElementById('popup').classList.add('active');
+};
 
-// // Ferme la pop-up au clic sur la croix
-// document.getElementById('close-btn').onclick = function() {
-//   document.getElementById('popup').classList.remove('active');
-// };
+// Ferme la pop-up au clic sur la croix
+document.getElementById('close-btn').onclick = function() {
+  document.getElementById('popup').classList.remove('active');
+};
 // #endregion PopUp
 
 // #region Définitions des types
@@ -581,7 +581,7 @@ let penduState = null;
 let error = 0;
 
 function lePendu() {
-    const words = ["abandonner","abattre","abri","absence","absolu","absolument","accent","accepter","accompagner","accomplir","accord","accorder","accrocher","accuser","acheter","achever","acte","action","admettre","adresser","affaire","affirmer","agent","agir","agiter","ah","aide","aider","aile","ailleurs","aimer","ainsi","air","ajouter","aller","allumer","alors","amener","ami","amour","amuser","an","ancien","anglais","anglais","angoisse","animal","animer","annoncer","apercevoir","apparaitre","apparence","appartement","appartenir","appel","appeler","apporter","apprendre","approcher","appuyer","arbre","argent","arme","armee","armer","arracher","arreter","arriere","arriver","art","article","as","aspect","asseoir","assez","assister","assurer","attacher","attaquer","atteindre","attendre","attention","attirer","attitude","aucun","aucun","auteur","autorite","autour","autre","autre","autrefois","autrement","avance","avancer","avenir","aventure","avis","avoir","avouer","baisser","banc","bande","barbe","bas","bas","bas","bataille","battre","beau","beau","beau","beaucoup","beaux","besoin","bien","bien","billet","blanc","blanc","bleu","blond","boire","bois","bon","bon","bonheur","bord","bouche","bout","branche","bras","briller","briser","bruit","brusquement","bureau","but","cabinet","cacher","calme","calme","calmer","camarade","campagne","capable","car","caractere","caresser","carte","cas","casser","cause","causer","ce","ce","ceci","cela","celui","cent","centre","cependant","cercle","certain","certain","certainement","certes","cerveau","cesse","cesser","chacun","chaine","chair","chaise","chambre","champ","chance","changement","changer","chant","chanter","chaque","charge","charger","chasse","chasser","chat","chaud","chef","chemin","chemise","cher","chercher","cheval","cheveu","chez","chien","chiffre","choisir","choix","chose","chute","ci","ciel","cinq","cinquante","circonstance","clair","claire","classe","clef","coeur","coin","colere","colline","colon","combat","combien","commander","comme","comme","commencement","commencer","comment","comment","commun","compagnie","compagnon","complet","composer","comprendre","compte","compter","conclure","condamner","condition","conduire","confiance","confier","confondre","connaissance","connaitre","conscience","conseil","consentir","considerer","construire","consulter","contenir","content","contenter","continuer","contraire","contre","convenir","conversation","corde","corps","cote","cote","cou","couche","coucher","couler","couleur","coup","couper","cour","courage","courant","courir","cours","course","court","couvrir","craindre","crainte","creer","creuser","cri","crier","crise","croire","croiser","croix","cruel","cuisine","curieux","curiosite","dame","danger","dangereux","dans","danser","davantage","de","de","debout","debut","dechirer","decider","declarer","decouvrir","decrire","defaut","defendre","degager","dehors","dehors","delà","demain","demain","demande","demander","demeurer","demi","dent","depart","depasser","deposer","depuis","depuis","dernier","dernier","descendre","desert","desespoir","designer","desir","desirer","dessiner","dessus","detacher","detail","detruire","deux","devant","devant","devenir","deviner","devoir","devoir","dieu","different","difficile","digne","dimanche","dire","direction","diriger","discours","discussion","discuter","disparaitre","disposer","distance","distinguer","divers","dix","docteur","doigt","dominer","donc","donner","dont","dormir","dos","double","doucement","douleur","doute","douter","doux","douze","drame","dresser","droit","droit","droite","droite","du","dur","durant","durer","eau","eaux","ecarter","echapper","eclairer","eclat","eclater","ecole"];
+    const words = ["abandonner","abattre","abri","absence","absolu","absolument","accent","accepter","accompagner","accomplir","accord","accorder","accrocher","accuser","acheter","achever","acte","action","admettre","adresser","affaire","affirmer","agent","agir","agiter","ah","aide","aider","aile","ailleurs","aimer","ainsi","air","ajouter","aller","allumer","alors","amener","ami","amour","amuser","an","ancien","anglais","anglais","angoisse","animal","animer","annoncer","apercevoir","apparaitre","apparence","appartement","appartenir","appel","appeler","apporter","apprendre","approcher","appuyer","arbre","argent","arracher","arreter","arriere","arriver","art","article","as","aspect","asseoir","assez","assister","assurer","attacher","attaquer","atteindre","attendre","attention","attirer","attitude","aucun","aucun","auteur","autorite","autour","autre","autre","autrefois","autrement","avance","avancer","avenir","aventure","avis","avoir","avouer","baisser","banc","bande","barbe","bas","bas","bas","bataille","battre","beau","beau","beau","beaucoup","beaux","besoin","bien","bien","billet","blanc","blanc","bleu","blond","boire","bois","bon","bon","bonheur","bord","bouche","bout","branche","bras","briller","briser","bruit","brusquement","bureau","but","cabinet","cacher","calme","calme","calmer","camarade","campagne","capable","car","caractere","caresser","carte","cas","casser","cause","causer","ce","ce","ceci","cela","celui","cent","centre","cependant","cercle","certain","certain","certainement","certes","cerveau","cesse","cesser","chacun","chaine","chair","chaise","chambre","champ","chance","changement","changer","chant","chanter","chaque","charge","charger","chasse","chasser","chat","chaud","chef","chemin","chemise","cher","chercher","cheval","cheveu","chez","chien","chiffre","choisir","choix","chose","chute","ci","ciel","cinq","cinquante","circonstance","clair","claire","classe","clef","coeur","coin","colere","colline","colon","combat","combien","commander","comme","comme","commencement","commencer","comment","comment","commun","compagnie","compagnon","complet","composer","comprendre","compte","compter","conclure","condamner","condition","conduire","confiance","confier","confondre","connaissance","connaitre","conscience","conseil","consentir","considerer","construire","consulter","contenir","content","contenter","continuer","contraire","contre","convenir","conversation","corde","corps","cote","cote","cou","couche","coucher","couler","couleur","coup","couper","cour","courage","courant","courir","cours","course","court","couvrir","craindre","crainte","creer","creuser","cri","crier","crise","croire","croiser","croix","cruel","cuisine","curieux","curiosite","dame","danger","dangereux","dans","danser","davantage","de","de","debout","debut","dechirer","decider","declarer","decouvrir","decrire","defaut","defendre","degager","dehors","dehors","delà","demain","demain","demande","demander","demeurer","demi","dent","depart","depasser","deposer","depuis","depuis","dernier","dernier","descendre","desert","desespoir","designer","desir","desirer","dessiner","dessus","detacher","detail","detruire","deux","devant","devant","devenir","deviner","devoir","devoir","dieu","different","difficile","digne","dimanche","dire","direction","diriger","discours","discussion","discuter","disparaitre","disposer","distance","distinguer","divers","dix","docteur","doigt","dominer","donc","donner","dont","dormir","dos","double","doucement","douleur","doute","douter","doux","douze","drame","dresser","droit","droit","droite","droite","du","dur","durant","durer","eau","eaux","ecarter","echapper","eclairer","eclat","eclater","ecole"];
 
     const word = words[Math.floor(Math.random() * words.length)].toLowerCase();
     let guessedLetters = [];
@@ -875,5 +875,238 @@ document.getElementById('btn-sepia-mode-all').addEventListener("click", sepiaMod
 
 // #endregion Noeuds
 
+// #region Palindrôme
+
+function getResultPalindromeTest() {
+    const input = document.getElementById("palindromeInput").value;
+    const resultLocation = document.getElementById("palindromeResult");
+    motMiroir = input.split("").reverse().join("");
+    resultLocation.innerHTML = (input === motMiroir) ? input + " est bien un palindrome !" : input + " n'est pas un palindrome !";
+    resultLocation.style.margin = "20px";
+}
+
+// function getResultPalindromeTest(string) {
+//     return string === string.split("").reverse().join("");
+// }
+
+// const mot = "racecar";
+// const mot_palindrome = getResultPalindromeTest(mot)
+// console.log(mot_palindrome);
+
+// #endregion Palindrôme
+
+// #region  Feu tricolore
+
+// let state = 0; // 0: green, 1: orange, 2: red
+
+// function trafficLight() {
+//     switch (state) {
+//         case 0: // Green -> Orange
+//             document.getElementById("greenLight").style.visibility = "hidden";
+//             document.getElementById("orangeLight").style.visibility = "visible";
+//             state = 1;
+//             break;
+//         case 1: // Orange -> Red
+//             document.getElementById("orangeLight").style.visibility = "hidden";
+//             document.getElementById("redLight").style.visibility = "visible";
+//             state = 2;
+//             break;
+//         case 2: // Red -> Green
+//         default:
+//             document.getElementById("greenLight").style.visibility = "visible";
+//             document.getElementById("redLight").style.visibility = "hidden";
+//             state = 0;
+//             break;
+//     }
+// }
+// setInterval(trafficLight, 2000);
+
+let state = 0; // 0: green, 1: orange, 2: red
+setInterval(() => {
+    document.getElementById("greenLight").style.visibility = state === 0 ? "visible" : "hidden";
+    document.getElementById("orangeLight").style.visibility = state === 1 ? "visible" : "hidden";
+    document.getElementById("redLight").style.visibility = state === 2 ? "visible" : "hidden";
+    state = (state + 1) % 3;
+}, 2000);
+
+// #endregion  Feu tricolore
+
+// #region Modale
+
+(function() {
+    // Crée le bouton d'ouverture
+    const openBtn = document.createElement("button");
+    openBtn.textContent = "Ouvrir la modale";
+    openBtn.style.margin = "30px";
+    let ParentNode = document.getElementById("modale");
+    ParentNode.appendChild(openBtn);
+
+    // Crée la modale et son overlay
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.background = "rgba(0, 0, 0, 0.53)";
+    overlay.style.display = "none";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "1000";
+
+    // Contenu de la modale
+    const modal = document.createElement("div");
+    modal.style.background = "#fff";
+    modal.style.padding = "32px 24px";
+    modal.style.borderRadius = "12px";
+    modal.style.position = "relative";
+    modal.style.minWidth = "320px";
+    modal.style.boxShadow = "0 8px 32px rgba(0,0,0,0.2)";
+
+    // Croix de fermeture
+    const closeBtn = document.createElement("span");
+    closeBtn.textContent = "×";
+    closeBtn.style.position = "absolute";
+    closeBtn.style.top = "12px";
+    closeBtn.style.right = "18px";
+    closeBtn.style.fontSize = "2rem";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.userSelect = "none";
+
+    // Titre et contenu
+    const title = document.createElement("h2");
+    title.textContent = "Titre de la modale";
+    const content = document.createElement("p");
+    content.textContent = "Ceci est le contenu de la modale. Cliquez sur la croix ou n'importe où sur l'écran pour fermer.";
+
+    // Assemble la modale
+    modal.appendChild(closeBtn);
+    modal.appendChild(title);
+    modal.appendChild(content);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Effet de flou sur tout le reste de la page quand la modale est ouverte
+    function setBlur(active) {
+        // Sélectionne tous les éléments enfants du body sauf l'overlay et le bouton d'ouverture
+        Array.from(document.body.children).forEach(child => {
+            if (child !== overlay && child !== ParentNode) {
+                child.style.filter = active ? "blur(4px)" : "";
+            }
+        });
+    }
+
+    // Ouvre la modale
+    openBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+        setBlur(true);
+    });
+
+    // Ferme la modale sur la croix
+    closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+        setBlur(false);
+    });
+
+    // Ferme la modale en cliquant sur l'overlay (hors de la modale)
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+            overlay.style.display = "none";
+            setBlur(false);
+        }
+    });
+
+    // Ferme la modale avec la touche "Escape"
+    document.addEventListener("keydown", (e) => {
+        if (overlay.style.display === "flex" && e.key === "Escape") {
+            overlay.style.display = "none";
+            setBlur(false);
+        }
+    });
+})();
+
+// #endregion Modale
+
+// #region Somme de Listes
+
+// Création de la div résultat si besoin
+let parent = document.getElementById("sumNumberList");
+let = resultDiv = document.createElement("div");
+resultDiv.id = "resultSumList";
+parent.appendChild(resultDiv);
 
 
+class SumNumberList {
+    constructor(numbers) {
+        this.numbers = numbers;
+    }
+
+    sum() {
+        return this.numbers.reduce((acc, n) => acc + n, 0);
+    }
+
+    displayResult(parentId = "sumNumberList", resultId = "resultSumList") {
+        let resultDiv = document.getElementById(resultId);
+        resultDiv.innerHTML += `Somme de la liste [${this.numbers.join(", ")}] : <b>${this.sum()}</b>` + "<br>";
+    }
+
+    static fromString(str) {
+        // Extrait tous les nombres de la chaîne (ex: "1 + 2+ 3 +4")
+        const numbers = str.match(/-?\d+(\.\d+)?/g)?.map(Number) || [];
+        return new SumNumberList(numbers);
+    }
+}
+
+// Ajout d'un input pour l'utilisateur
+const inputDiv = document.createElement("div");
+inputDiv.style.margin = "20px 0";
+inputDiv.innerHTML = `
+    <input type="text" id="sumInput" placeholder="Ex: 1 + 2 + 3 + 4" style="width:200px;">
+    <button id="sumBtn">Calculer la somme</button>
+`;
+parent.insertBefore(inputDiv, resultDiv);
+
+// Gestion du bouton
+document.getElementById("sumBtn").addEventListener("click", function() {
+    const val = document.getElementById("sumInput").value;
+    const sumObj = SumNumberList.fromString(val);
+    sumObj.displayResult();
+});
+
+// #endregion Somme de Listes 
+
+// #region class Weapons and Spells
+
+class Weapons {
+    constructor(weapon1, weapon2, weapon3, weapon4) {
+        this.weapon1 = weapon1;
+        this.weapon2 = weapon2;
+        this.weapon3 = weapon3;
+        this.weapon4 = weapon4;
+    }
+    displayResult() {
+        return `For weapons you can use a ${this.weapon1}, a ${this.weapon2}, <br>a ${this.weapon3} or a ${this.weapon4}<br>`;
+    }
+}
+class Spells {
+    constructor(spell1, spell2, spell3, spell4) {
+        this.spell1 = spell1;
+        this.spell2 = spell2;
+        this.spell3 = spell3;
+        this.spell4 = spell4;
+    }
+    displayResult() {
+        return `For spells you can use ${this.spell1}, <br> ${this.spell2}, ${this.spell3} or ${this.spell4}<br>`;
+    }
+}
+
+const myWeapons = new Weapons("boomerang", "dagger", "sword", "bazooka");
+const mySpells = new Spells("Aguamenti", "Alohomora", "Immobulus", "Imperio");
+
+const spellsAndWeapons = document.getElementById("classSpellWeapons");
+spellsAndWeapons.style.textAlign = "center";
+if (spellsAndWeapons) {
+    spellsAndWeapons.innerHTML = mySpells.displayResult() + " <br> " + myWeapons.displayResult();
+}
+
+//#endregion class weapons and Spells

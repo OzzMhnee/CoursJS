@@ -18,8 +18,8 @@
                 <span id="close-btn" class="close-btn">&times;</span>
                 <details>
                     <summary>Welcome to the JavaScript's exercices</summary>
-                    <p>Here, you will find some exercices to test your knowledge in JavaScript.</p>
-                    <p>Click on the title of each exercice to see the details and try it out!</p>
+                    <h6>Here, you will find some exercices to test your knowledge in JavaScript.</h6>
+                    <h6>Click on the title of each exercice to see the details and try it out!</h6>
                 </details>
             </div>
         </div>
@@ -355,9 +355,54 @@
             <button id="btn-sepia-mode-before"> Sur l'exercice précédent</button>
             <button id="btn-sepia-mode-all"> Sur tous les exercices</button>
         </div>
+        <div class="exercices" id="palindrome">
+            <h2>Palindrôme ?</h2>
+            
+            <input type="text" id="palindromeInput" size="35" style="margin-bottom: 30px;" placeholder="Tapez un nombre, un mot, une phrase ...">
+            <button onclick="getResultPalindromeTest();">palindrôme ?</button>
+            <h4 id="palindromeResult"></h4>
+            <h6>this exercice is to make function that test if the user input is a palindrome</h6>
+        </div>
+        <div class="exercices">
+            <h2>Feu tricolore / Taffic Light</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" style="width: 60%;">
+                <path fill="#A4A9AD" d="M338 711h-86a26 26 0 0 1 0-52h86v52zm0-253h-86a26 26 0 0 1 0-52h86v52zm0-254h-86a26 26 0 0 1 0-52h86v52z"/>
+                <path d="M282 659h56v52h-56zm0-254h56v52h-56zm0-253h56v52h-56z"/>
+                <path fill="#A4A9AD" d="M686 711h86a26 26 0 0 0 0-52h-86v52zm0-253h86a26 26 0 0 0 0-52h-86v52zm0-254h86a26 26 0 0 0 0-52h-86v52z"/>
+                <path d="M686 659h56v52h-56zm0-254h56v52h-56zm0-253h56v52h-56z"/>
+                <path fill="#333E48" d="M716 131c0-37-30-67-66-67H375c-37 0-67 30-67 67v762c0 36 30 66 66 66h276c36 0 66-30 66-66V131z"/>
+                <path d="M428 906c-37 0-67-30-67-67V184c0-36 30-66 67-66h168c37 0 67 30 67 66v655c0 37-30 67-67 67H428z"/>
+                <path id="greenLight" fill="#00AD68" d="M416 760a96 96 0 1 0 192 0 96 96 0 1 0-192 0Z"/>
+                <path d="M512 664c-45 0-83 30-93 72h186a96 96 0 0 0-93-72z"/>
+                <path fill="#D1D3D3" d="M602 659a25 25 0 0 1 0 49H422a25 25 0 0 1 0-49h180z"/>
+                <path fill="#FFF" d="M558 776a13 13 0 1 0 25 0 13 13 0 1 0-25 0Zm-32-13a13 13 0 1 0 26 0 13 13 0 1 0-26 0Zm10 46a13 13 0 1 0 25 0 13 13 0 1 0-26 0Z"/>
+                <path id="orangeLight" style="visibility: hidden;" fill="#fa871f" d="M416 517a96 96 0 1 0 192 0 96 96 0 1 0-192 0Z"/>
+                <path d="M512 421c-45 0-83 31-93 72h186a96 96 0 0 0-93-72z"/>
+                <path fill="#D1D3D3" d="M602 416a25 25 0 0 1 0 49H422a25 25 0 0 1 0-49h180z"/>
+                <path fill="#FFF" d="M558 533a13 13 0 1 0 25 0 13 13 0 1 0-25 0Zm-32-13a13 13 0 1 0 26 0 13 13 0 1 0-26 0Zm10 46a13 13 0 1 0 25 0 13 13 0 1 0-26 0Z"/>
+                <path id="redLight" style="visibility: hidden;" fill="#FF5959" d="M416 274a96 96 0 1 0 192 0 96 96 0 1 0-192 0Z"/>
+                <path d="M512 178c-45 0-83 31-93 72h186a96 96 0 0 0-93-72z"/>
+                <path fill="#D1D3D3" d="M602 173a25 25 0 0 1 0 49H422a25 25 0 0 1 0-49h180z"/>
+                <path fill="#FFF" d="M558 290a13 13 0 1 0 25 0 13 13 0 1 0-25 0Zm-32-13a13 13 0 1 0 26 0 13 13 0 1 0-26 0Zm10 46a13 13 0 1 0 25 0 13 13 0 1 0-26 0Z"/>
+            </svg>
+        </div>
+        <div class="exercices" id="modale">
+            <h2 style="top: 20px;">Modale</h2>
+            <h6>This is an excice to creation is JS a modal witch could be close clicking wherever we want on the page.</h6>
+            <h6>In the same time we can use a blur filter to make a modal more visual.</h6>
+        </div>
+        <div class="exercices" id="sumNumberList">
+            <h2 style="order: 0;">Calcul de sommes</h2>
+            <h6 style="order: 3; margin-top: 20px;">This exercice is to transform an addition input to a list</h6>
+            <h6 style="order: 4;">And do the sum of the elements of the list</h6>
+        </div>
+        <div class="exercices" id="classSpellWeapons">
+            <h2>Weapons & Spells</h2>
+        </div>
+        <!-- .exercices# -->
     </section>
-    
-
 </body>
 <script src="/exercices.js"></script>
 </html>
+
+
