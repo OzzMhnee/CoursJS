@@ -1106,7 +1106,101 @@ const mySpells = new Spells("Aguamenti", "Alohomora", "Immobulus", "Imperio");
 const spellsAndWeapons = document.getElementById("classSpellWeapons");
 spellsAndWeapons.style.textAlign = "center";
 if (spellsAndWeapons) {
-    spellsAndWeapons.innerHTML = mySpells.displayResult() + " <br> " + myWeapons.displayResult();
+    spellsAndWeapons.innerHTML += mySpells.displayResult() + " <br> " + myWeapons.displayResult();
 }
 
 //#endregion class weapons and Spells
+
+// #region characters
+
+// class Guerrier {
+//     constructor(nom, race,classe, arme) {
+//         super(nom,race,classe)
+//         this.arme = arme
+//     }
+//    return `${afficher()} et une ${this.arme}`
+// }
+class Personnage {
+    constructor(nom, race, classe, pointsDeVie, potions = 2, estVivant = true) {
+        this.nom = nom;
+        this.race = race;
+        this.classe = classe;
+        this.pointsDeVie = pointsDeVie;
+        this.pointsDeVieMax = pointsDeVie;
+        this.competences = competences;
+        this.sac = [];
+        this.potions = potions;
+        this.estVivant = estVivant;
+    }
+    
+    utiliserPotion() {
+        if (this.potions > 0 && this.estVivant) {
+            this.pointsDeVie = Math.min(this.pointsDeVie + 30, this.pointsDeVieMax);
+            this.potions--;
+            return true;
+        }
+        return false;
+    }
+    AfficherSynthesePersonnage() {
+        if (this.estVivant === true && this.potions > 0) {
+            return `${this.nom}, ${this.race} spécialisé ${this.classe}, ${this.pointsDeVie} points de vie,<br> ainsi que ${this.potions} restantes,<br> il peut ${this.competences.map(c => c.nom).join(", ")} `;
+        } else if (this.estVivant === true && this.potions === 0){
+            return `${this.nom}, ${this.race} spécialisé ${this.classe}, ${this.pointsDeVie} points de vie,<br> et sans potions restantes,<br> il peut ${this.competences.map(c => c.nom).join(", ")} `;
+        } else {
+            return `RIP ${this.nom}, ${this.race} spécialisé ${this.classe}, il n'aura pas fait long feu !`;
+        }
+    }
+}
+
+class Competence extends Personnage {
+    constructor(name, degats, soin = 0, type = "attaque") {
+        this.name = name;
+        this.degats = degats;
+        this.soin = soin;
+        this.type = type;   
+    }
+}
+// Compétences
+const competenceFeu = new Competence("Boule de Feu", 30);
+const competenceChant = new Competence("Chant magique", 15);
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+const competenceSoinApproximatif = new Competence("Chant de Vie", 0, randomInt(-15, 15), "soin");
+// }
+
+// Personnages
+
+const wrandrall = new Personnage("Wrandrall", "Humain croisé démon", "Guerrier", 100, [
+    new Competence("Coup d'épée", 20),
+    new Competence("Esquive", 0)
+]);
+const zarakai = new Personnage("Zarakaï", "Nain", "Guerrier", 120, [
+    new Competence("Coup de marteau", 25),
+    new Competence("Charge", 15)
+]);
+const enoriel = new Personnage("Enoriel", "Elfe", "Barde", 90, [
+    competenceChant
+]);
+const zehirmahnn = new Personnage("Zehirmahnn", "Zorlim", "Mage du feu", 110, [
+    competenceFeu,
+    new Competence("Bouclier de Flammes", 0)
+]);
+const guertrude = new Personnage("Guertrude", "Humaine", "Guerrière", 80, [
+    new Competence("Coup de hache", 18),
+    new Competence("Taper, puis viser", 0)
+]);
+const trichelieu = new Personnage("Trichelieu", "Elfe noir", "Assassin", 70, [
+    new Competence("Castration", 22),
+    competenceSoinApproximatif
+]);
+const personnagesDisponibles = [wrandrall, zarakai, enoriel, zehirmahnn, guertrude];
+
+
+console.log(guertrude.AfficherSynthesePersonnage());
+
+const locationCharactersInfo = document.getElementById("characters");
+locationCharactersInfo.style.textAlign = "center";
+locationCharactersInfo.innerHTML += guertrude.AfficherSynthesePersonnage();
+
+// #endregion characters

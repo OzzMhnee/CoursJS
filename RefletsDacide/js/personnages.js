@@ -1,11 +1,11 @@
-class Competence {
-    constructor(nom, degats, soin = 0, type = "attaque") {
-        this.nom = nom;
-        this.degats = degats;
-        this.soin = soin;
-        this.type = type;
-    }
-}
+// class Competence {
+//     constructor(nom, degats, soin = 0, type = "attaque") {
+//         this.nom = nom;
+//         this.degats = degats;
+//         this.soin = soin;
+//         this.type = type;
+//     }
+// }
 
 class Personnage {
     constructor(nom, race, classe, pointsDeVie, competences, potions = 2) {
@@ -30,6 +30,14 @@ class Personnage {
     }
 }
 
+class Competence extends Personnage {
+    constructor(nom, degats, soin = 0, type = "attaque") {
+        this.nom = nom;
+        this.degats = degats;
+        this.soin = soin;
+        this.type = type;
+    }
+}
 // Compétences
 const competenceFeu = new Competence("Boule de Feu", 30);
 const competenceChant = new Competence("Chant magique", 15);
