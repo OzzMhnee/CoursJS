@@ -1111,7 +1111,7 @@ if (spellsAndWeapons) {
 
 //#endregion class weapons and Spells
 
-// #region characters             ne fonctionne pas actuellement, en retard sur cet exercice, a travailler
+// #region characters             A fixer en css
 class Competence {
     constructor(nom, degats, soin = 0, type = "attaque") {
         this.nom = nom;
@@ -1334,10 +1334,159 @@ function loadAllTitles() {
 }
 // #endregion
 
-// #region
+// #region Horloge
+
+let cityList = [];
+let cityInput = document.querySelector("#LocalTime input");
+let result = document.getElementById("oClock");
+
+// Chargement du JSON de villes (on suppose que le fichier est dans /data/city.list.json)
+fetch("data/city.list.json")
+    .then(response => response.json())
+    .then(data => {
+        cityList = data;
+        setupCityAutocomplete();
+    })
+    .catch(() => {
+        // Si le JSON est trop gros ou indisponible, on ne fait rien
+    });
+
+function setupCityAutocomplete() {
+    // Crée un datalist pour l'autocomplétion
+    let datalist = document.createElement("datalist");
+    datalist.id = "cityDatalist";
+    document.body.appendChild(datalist);
+    cityInput.setAttribute("list", "cityDatalist");
+
+    // On ne met que les 5000 premières villes pour la perf
+    let options = cityList.slice(0, 955000).map(city => {
+        let label = city.name;
+        if (city.country) label += " (" + city.country + ")";
+        return `<option value="${label}">`;
+    }).join("");
+    datalist.innerHTML = options;
+}
+
+function showLocalTime() {
+    if (!cityInput || !result) return;
+    const userInput = cityInput.value.trim();
+
+    // Recherche la ville dans la liste
+    let foundCity = cityList.find(city => {
+        let label = city.name;
+        if (city.country) label += " (" + city.country + ")";
+        return label.toLowerCase() === userInput.toLowerCase();
+    });
+
+    if (!foundCity) {
+        result.textContent = "Ville inconnue. Essayez d'utiliser l'autocomplétion.";
+        return;
+    }
+
+    // On tente de deviner le fuseau horaire à partir du pays (pour une vraie appli, il faudrait une base de données fuseau/city)
+    // Ici, on propose quelques cas courants, sinon on affiche l'heure locale du navigateur
+    let tz = getTimezoneFromCountry(foundCity.country, foundCity.coord);
+
+    try {
+        const now = new Date();
+        const options = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const time = now.toLocaleTimeString('fr-FR', options);
+        result.innerHTML = `Heure locale à ${foundCity.name} (${foundCity.country}) : ${time} <br> [${tz}]`;
+    } catch (e) {
+        result.textContent = "Fuseau horaire inconnu pour cette ville.";
+    }
+}
+
+// Fonction utilitaire pour deviner le fuseau horaire à partir du pays et des coordonnées
+function getTimezoneFromCountry(country, coord) {
+    // Utilise GeoNames pour obtenir le fuseau horaire précis
+    // Remplacez 'demo' par votre propre nom d'utilisateur GeoNames si besoin
+    const username = 'demo';
+    const url = `https://secure.geonames.org/timezoneJSON?lat=${coord.lat}&lng=${coord.lon}&username=${username}`;
+    return fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.timezoneId) {
+                return data.timezoneId;
+            }
+            // Fallback si GeoNames ne répond pas correctement
+            return getFallbackTimezone(country, coord);
+        })
+        .catch(() => getFallbackTimezone(country, coord));
+}
+
+// Fallback local si GeoNames ne répond pas
+function getFallbackTimezone(country, coord) {
+    switch (country) {
+        case "FR": return "Europe/Paris";
+        case "US":
+            if (coord.lon < -100) return "America/Los_Angeles";
+            if (coord.lon < -85) return "America/Denver";
+            if (coord.lon < -70) return "America/Chicago";
+            return "America/New_York";
+        case "GB": return "Europe/London";
+        case "DE": return "Europe/Berlin";
+        case "IT": return "Europe/Rome";
+        case "ES": return "Europe/Madrid";
+        case "RU": return "Europe/Moscow";
+        case "JP": return "Asia/Tokyo";
+        case "CN": return "Asia/Shanghai";
+        case "IN": return "Asia/Kolkata";
+        case "BR": return "America/Sao_Paulo";
+        case "CA":
+            if (coord.lon < -100) return "America/Vancouver";
+            return "America/Toronto";
+        default: return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+}
+
+// Modifie showLocalTime pour gérer la promesse
+function showLocalTime() {
+    if (!cityInput || !result) return;
+    const userInput = cityInput.value.trim();
+
+    // Recherche la ville dans la liste
+    let foundCity = cityList.find(city => {
+        let label = city.name;
+        if (city.country) label += " (" + city.country + ")";
+        return label.toLowerCase() === userInput.toLowerCase();
+    });
+
+    if (!foundCity) {
+        result.textContent = "Ville inconnue. Essayez d'utiliser l'autocomplétion.";
+        return;
+    }
+
+    // Appel asynchrone à GeoNames pour obtenir le fuseau horaire
+    getTimezoneFromCountry(foundCity.country, foundCity.coord)
+        .then(tz => {
+            try {
+                const now = new Date();
+                const options = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                const time = now.toLocaleTimeString('fr-FR', options);
+                result.innerHTML = `Heure locale à ${foundCity.name} (${foundCity.country}) : ${time} <br> [${tz}]`;
+            } catch (e) {
+                result.textContent = "Fuseau horaire inconnu pour cette ville.";
+            }
+        });
+}
 // #endregion
 
-// #region
+// #region Help for position
+function displayTheLocation() {
+    const angle = parseFloat(document.getElementById("degres").value);
+    const dist = parseFloat(document.getElementById("dist").value);
+    const X1 = 250, Y1 = 250;
+    const showing = document.getElementById("locationXY");
+    if (isNaN(angle)) {
+        showing.innerHTML = "Veuillez entrer un angle valide.";
+        return;
+    }
+    // Utilise Math.cos et Math.sin (et non cos/sin)
+    const X2 = X1 + (dist * Math.cos(angle * Math.PI / 180));
+    const Y2 = Y1 + (dist * Math.sin(angle * Math.PI / 180));
+    showing.innerHTML += "positionnement X2 " + X2.toFixed(2) + " Y2 " + Y2.toFixed(2) + "<br>";
+}
 // #endregion
 
 // #region

@@ -346,7 +346,7 @@
                 <h2 style="order: 0;">Weapons & Spells</h2>
             </div>
         </div>
-        <div class="exercices" ></div>
+        <div class="exercices" >
             <div style="width: 100%;" id="characters">
                 <h2>Characters</h2>
                 <ul style="font-size: 12px;" id="characters-list"></ul>
@@ -376,6 +376,19 @@
             <h2>Show all post titles</h2>
             <button onclick="loadAllTitles()">Load all titles</button>
             <ul id="titles"></ul>
+        </div>
+        <div class="exercices" id="LocalTime">
+            <h2>What time is it there?</h2>
+            <input type="text">
+            <button onclick="showLocalTime();">Validate</button>
+            <p id="oClock"></p>
+        </div>
+        <div class="exercices">
+            <input type="text" placeholder="enter the degres" id="degres">
+            <input type="text" placeholder="enter the distance" id="dist">
+            <button onclick="displayTheLocation();">Check</button>
+            <p style="text-shadow: 0px 0px 5px rgb(197, 12, 43);;">Position à définir</p>
+            <div  id="locationXY"></div>
         </div>
         <!-- raccourcis .exercices# -->
     </section>
