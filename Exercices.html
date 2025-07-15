@@ -293,61 +293,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="exercices" id="filtrage2">
-            <section class="filtrage-categorie">
-                <div class="filtre-bar">
-                    <label for="categorie-select">Filtrer par catégorie :</label>
-                    <select id="categorie-select" onchange="filtrer(this.value)">
-                        <option value="all">Tous</option>
-                        <option value="ludique">Ludique</option>
-                        <option value="pratique">Pratique</option>
-                        <option value="sportif">Sportif</option>
-                    </select>
-                </div>
-                <section id="produits" class="produits-grid">
-                    <article class="ludique pratique">
-                        <span class="prod-nom">iPad</span>
-                        <span class="prod-cat">Ludique, Pratique</span>
-                    </article>
-                    <article class="ludique sportif">
-                        <span class="prod-nom">Batte de baseball</span>
-                        <span class="prod-cat">Ludique, Sportif</span>
-                    </article>
-                    <article class="pratique">
-                        <span class="prod-nom">Ventilateur</span>
-                        <span class="prod-cat">Pratique</span>
-                    </article>
-                    <article class="ludique">
-                        <span class="prod-nom">Jeu d'échecs</span>
-                        <span class="prod-cat">Ludique</span>
-                    </article>
-                    <article class="sportif">
-                        <span class="prod-nom">Ballon de foot</span>
-                        <span class="prod-cat">Sportif</span>
-                    </article>
-                    <article class="pratique">
-                        <span class="prod-nom">Aspirateur</span>
-                        <span class="prod-cat">Pratique</span>
-                    </article>
-                    <article class="ludique">
-                        <span class="prod-nom">Console de jeux</span>
-                        <span class="prod-cat">Ludique</span>
-                    </article>
-                    <article class="pratique sportif">
-                        <span class="prod-nom">Vélo</span>
-                        <span class="prod-cat">Pratique, Sportif</span>
-                    </article>
-                    <article class="ludique">
-                        <span class="prod-nom">Puzzle</span>
-                        <span class="prod-cat">Ludique</span>
-                    </article>
-                    <article class="pratique">
-                        <span class="prod-nom">Cafetière</span>
-                        <span class="prod-cat">Pratique</span>
-                    </article>
-                </section>
-            </section>
-        </div> -->
         <div class="exercices" id="W-on-node">
             <h2>afficher/Supprime le filtre sépia</h2>
             <h6>Exercice de ciblage par Noeuds</h6>
@@ -400,11 +345,39 @@
             <div id="classSpellWeapons">
                 <h2 style="order: 0;">Weapons & Spells</h2>
             </div>
-            <div id="characters">
+        </div>
+        <div class="exercices" ></div>
+            <div style="width: 100%;" id="characters">
                 <h2>Characters</h2>
+                <ul style="font-size: 12px;" id="characters-list"></ul>
             </div>
         </div>
-        <!-- .exercices# -->
+        <div class="exercices" id="ajax">
+            <h2 style="margin-bottom: 5px;">Exercice Ajax for beginner</h2>
+            <h6 style="margin-bottom: 5px;">This exercice is to catch a local json file and display it in the page</h6>
+            <button onclick="displayQuotes()">Give me the favorites quotes</button>
+            <ul id="quotes-list"></ul>
+
+            <h2 style="margin-bottom: 5px;">Exercice Ajax for intermediate</h2>
+            <h6 style="margin-bottom: 5px;">This exercice is to catch an online json file and display it in the page</h6>
+            <button onclick="displayUsers()">Upload the userlist</button>
+            <ul id="userlist"></ul> 
+        </div>
+        <div class="exercices" id="ajaxAgain">
+            <h2 style="margin-bottom: 5px;">Load a post</h2>
+            <button onclick="UploadPost()">Load a post</button>
+            <div style="text-align: center; padding: 0 25px;" id="post"></div>
+
+            <h2>Show the weather</h2>
+            <input type="text" id="weatherCity" placeholder="Enter a city" />
+            <button onclick="showWeather()">See the weather</button>
+            <div id="weather" style="margin-top:10px;"></div>
+
+            <h2>Show all post titles</h2>
+            <button onclick="loadAllTitles()">Load all titles</button>
+            <ul id="titles"></ul>
+        </div>
+        <!-- raccourcis .exercices# -->
     </section>
 </body>
 <script src="/exercices.js"></script>

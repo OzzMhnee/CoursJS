@@ -1111,17 +1111,19 @@ if (spellsAndWeapons) {
 
 //#endregion class weapons and Spells
 
-// #region characters
+// #region characters             ne fonctionne pas actuellement, en retard sur cet exercice, a travailler
+class Competence {
+    constructor(nom, degats, soin = 0, type = "attaque") {
+        this.nom = nom;
+        this.degats = degats;
+        this.soin = soin;
+        this.type = type;
+    }
+}
 
-// class Guerrier {
-//     constructor(nom, race,classe, arme) {
-//         super(nom,race,classe)
-//         this.arme = arme
-//     }
-//    return `${afficher()} et une ${this.arme}`
-// }
+// Classe de base Personnage
 class Personnage {
-    constructor(nom, race, classe, pointsDeVie, potions = 2, estVivant = true) {
+    constructor(nom, race, classe, pointsDeVie, competences = [], potions = 2, estVivant = true) {
         this.nom = nom;
         this.race = race;
         this.classe = classe;
@@ -1132,7 +1134,7 @@ class Personnage {
         this.potions = potions;
         this.estVivant = estVivant;
     }
-    
+
     utiliserPotion() {
         if (this.potions > 0 && this.estVivant) {
             this.pointsDeVie = Math.min(this.pointsDeVie + 30, this.pointsDeVieMax);
@@ -1152,55 +1154,197 @@ class Personnage {
     }
 }
 
-class Competence extends Personnage {
-    constructor(name, degats, soin = 0, type = "attaque") {
-        this.name = name;
-        this.degats = degats;
-        this.soin = soin;
-        this.type = type;   
+// Classe Guerrier qui hérite de Personnage
+class Guerrier extends Personnage {
+    constructor(nom, race, pointsDeVie, competences = [], potions = 2, estVivant = true, arme = "épée") {
+        super(nom, race, "Guerrier", pointsDeVie, competences, potions, estVivant);
+        this.arme = arme;
+    }
+
+    AfficherSynthesePersonnage() {
+        return super.AfficherSynthesePersonnage() + `<br>Arme principale : ${this.arme}`;
     }
 }
-// Compétences
+
+// Classe Mage qui hérite de Personnage
+class Mage extends Personnage {
+    constructor(nom, race, pointsDeVie, competences = [], potions = 2, estVivant = true, element = "feu") {
+        super(nom, race, "Mage", pointsDeVie, competences, potions, estVivant);
+        this.element = element;
+    }
+
+    AfficherSynthesePersonnage() {
+        return super.AfficherSynthesePersonnage() + `<br>Élément : ${this.element}`;
+    }
+}
+
+// Classe Barde qui hérite de Personnage
+class Barde extends Personnage {
+    constructor(nom, race, pointsDeVie, competences = [], potions = 2, estVivant = true, instrument = "lyre") {
+        super(nom, race, "Barde", pointsDeVie, competences, potions, estVivant);
+        this.instrument = instrument;
+    }
+
+    AfficherSynthesePersonnage() {
+        return super.AfficherSynthesePersonnage() + `<br>Instrument : ${this.instrument}`;
+    }
+}
+
+// Génération de compétences
 const competenceFeu = new Competence("Boule de Feu", 30);
 const competenceChant = new Competence("Chant magique", 15);
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const competenceSoinApproximatif = new Competence("Chant de Vie", 0, randomInt(-15, 15), "soin");
-// }
 
-// Personnages
-
-const wrandrall = new Personnage("Wrandrall", "Humain croisé démon", "Guerrier", 100, [
+// Création des personnages avec héritage
+const wrandrall = new Guerrier("Wrandrall", "Humain croisé démon", 100, [
     new Competence("Coup d'épée", 20),
     new Competence("Esquive", 0)
-]);
-const zarakai = new Personnage("Zarakaï", "Nain", "Guerrier", 120, [
+], 2, true, "épée");
+const zarakai = new Guerrier("Zarakaï", "Nain", 120, [
     new Competence("Coup de marteau", 25),
     new Competence("Charge", 15)
-]);
-const enoriel = new Personnage("Enoriel", "Elfe", "Barde", 90, [
+], 2, true, "marteau");
+const enoriel = new Barde("Enoriel", "Elfe", 90, [
     competenceChant
-]);
-const zehirmahnn = new Personnage("Zehirmahnn", "Zorlim", "Mage du feu", 110, [
+], 2, true, "flûte");
+const zehirmahnn = new Mage("Zehirmahnn", "Zorlim", 110, [
     competenceFeu,
     new Competence("Bouclier de Flammes", 0)
-]);
-const guertrude = new Personnage("Guertrude", "Humaine", "Guerrière", 80, [
+], 2, true, "feu");
+const guertrude = new Guerrier("Guertrude", "Humaine", 80, [
     new Competence("Coup de hache", 18),
     new Competence("Taper, puis viser", 0)
-]);
+], 2, true, "hache");
 const trichelieu = new Personnage("Trichelieu", "Elfe noir", "Assassin", 70, [
     new Competence("Castration", 22),
     competenceSoinApproximatif
 ]);
-const personnagesDisponibles = [wrandrall, zarakai, enoriel, zehirmahnn, guertrude];
-
+const personnagesDisponibles = [wrandrall, zarakai, enoriel, zehirmahnn, guertrude, trichelieu];
 
 console.log(guertrude.AfficherSynthesePersonnage());
 
-const locationCharactersInfo = document.getElementById("characters");
-locationCharactersInfo.style.textAlign = "center";
-locationCharactersInfo.innerHTML += guertrude.AfficherSynthesePersonnage();
+const charactersList = document.getElementById("characters-list");
+if (charactersList) {
+    personnagesDisponibles.forEach(perso => {
+        const li = document.createElement("li");
+        li.innerHTML = `<b>${perso.nom}</b><br>${perso.AfficherSynthesePersonnage()}`;
+        charactersList.appendChild(li);
+    });
+}
 
 // #endregion characters
+
+// #region Ajax débutant
+function displayQuotes() {
+    fetch('/exercices.json')
+        .then(response => response.json())
+        .then(data => {
+            const quotes = data;
+            const quotesList = document.getElementById('quotes-list');
+            quotesList.innerHTML = '';
+            quotes.forEach(quote => {
+                const quoteElement = document.createElement('li');
+                quoteElement.textContent = quote.favorite_quote;
+                quotesList.appendChild(quoteElement);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+// #endregion Ajax débutant
+
+// #region Ajax intermédiaire
+function displayUsers() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(users => {
+            const ul = document.getElementById("userlist");
+            ul.innerHTML = ""; // Vide la liste avant d'ajouter les nouveaux éléments
+            users.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = user.name + " live in " + user.address.city + ".";
+                ul.appendChild(li);
+            });
+        })
+        .catch(error => {
+            alert("Erreur lors du chargement des utilisateurs : " + error);
+        });
+}
+// #endregion Ajax intermédiaire
+
+// #region Ajax Charger Post
+function UploadPost() {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => response.json())
+        .then(post => {
+            const postDiv = document.getElementById('post');
+            postDiv.innerHTML = `
+                <h3>${post.title}</h3>
+                <p>${post.body}</p>
+            `;
+        })
+        .catch(error => {
+            document.getElementById('post').innerHTML = "Erreur lors du chargement du post : " + error;
+        });
+}
+// #endregion
+
+// #region Afficher météo
+function showWeather() {
+    const city = document.getElementById("weatherCity").value.trim();
+    const weatherDiv = document.getElementById("weather");
+    if (!city) {
+        weatherDiv.textContent = "Please enter a city.";
+        return;
+    }
+    weatherDiv.textContent = "Loading...";
+    fetch(`https://wttr.in/${encodeURIComponent(city)}?format=3`)
+        .then(response => {
+            if (!response.ok) throw new Error("Unknown city or service unavailable");
+            return response.text();
+        })
+        .then(weather => {
+            weatherDiv.textContent = weather;
+        })
+        .catch(error => {
+            weatherDiv.textContent = "Error: " + error.message;
+        });
+}
+// #endregion
+
+// #region Afficher titre de tous les posts
+function loadAllTitles() {
+    const titlesUl = document.getElementById("titles");
+    titlesUl.innerHTML = "Loading...";
+    fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(response => response.json())
+        .then(posts => {
+            titlesUl.innerHTML = "";
+            posts.forEach(post => {
+                const li = document.createElement("li");
+                li.textContent = post.title;
+                titlesUl.appendChild(li);
+            });
+        })
+        .catch(error => {
+            titlesUl.innerHTML = "Error loading titles: " + error;
+        });
+}
+// #endregion
+
+// #region
+// #endregion
+
+// #region
+// #endregion
+
+// #region
+// #endregion
+
+// #region
+// #endregion
+
+// #region
+// #endregion

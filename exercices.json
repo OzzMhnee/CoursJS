@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "Alice", "favorite_quote": "The only way to do great work is to love what you do." },
+  { "id": 2, "name": "Bob", "favorite_quote": "Life is what happens when you're busy making other plans." },
+  { "id": 3, "name": "Charlie", "favorite_quote": "Success is not final, failure is not fatal: it is the courage to continue that counts." },
+  { "id": 4, "name": "Diana", "favorite_quote": "Happiness depends upon ourselves." },
+  { "id": 5, "name": "Eve", "favorite_quote": "In the middle of difficulty lies opportunity." },
+  { "id": 6, "name": "Frank", "favorite_quote": "The best way to predict the future is to invent it." },
+  { "id": 7, "name": "Grace", "favorite_quote": "You miss 100% of the shots you don’t take." },
+  { "id": 8, "name": "Heidi", "favorite_quote": "Be yourself; everyone else is already taken." },
+  { "id": 9, "name": "Ivan", "favorite_quote": "Do not go where the path may lead, go instead where there is no path and leave a trail." },
+  { "id": 10, "name": "Judy", "favorite_quote": "The journey of a thousand miles begins with one step." }
+]
